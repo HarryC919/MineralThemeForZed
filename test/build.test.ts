@@ -221,8 +221,8 @@ describe('Zed TS grammar ground truth (2026-10-24 feedback)', () => {
 		// carbon's editorGroup.border base is #d9d9d9; other variants derive their
 		// hairlines from their own foreground family (e.g. teal #d8dfdf).
 		const t = themeOf('carbon');
-		expect(t.style['border']).toBe('#ffffff24');
-		expect(t.style['border.variant']).toBe('#d9d9d91f');
-		expect(t.style['pane_group.border']).toBe('#d9d9d91f');
+		expect(t.style['border']).toBe('#ffffff2e');
+		expect(t.style['border.variant']).toBe('#d9d9d929');
+		expect(t.style['pane_group.border']).toBe('#d9d9d929');
 	});
 });

@@ -247,7 +247,8 @@ Syntax 侧实现要点（较草案的修订）：
 - 修订：`string.regex` / `string.special` ← 绿（跟随源 string 规则，非橙）；`string.special.symbol` ← 青（`constant.other.symbol` 规则）；`label` ← 青；`link_uri` ← 红（与 link_text 同，Vira 链接整体红）；`selector.pseudo` ← 紫（attribute 族）；`hint` / `preproc` ← 灰（C# preprocessor 规则）；`emphasis.strong` = 红 + font_weight 700。
 - 已知有损点（验收时留意）：CSS 属性名在 Vira 为亮蓝 `#B2CCD6`，但 Zed 与 JSON/TS 成员共用 `property`（红）；`markup.underline` 无对应能力；`variable.special` 统一青（TS `this` 正确，Python self 的前景斜体丢失）；关键字斜体依赖语法用 `keyword.control` 捕获，若语法只发 `keyword` 则无斜体。
 - **TS 语法捕获 ground truth**（2026-10-24 用户反馈后取证，源自 zed 仓库 `crates/languages/src/typescript/highlights.scm`，commit `a75b8c8`；查询文件已编译进二进制、应用包内不可见）：Zed TS 语法把 `const/let/var/function/class/enum/interface/type` 捕获为 `@keyword.declaration`，`import/export/from` 为 `@keyword.import`，控制流为 `@keyword.control`，其余关键字（async/new/typeof/public…）归入笼统 `@keyword`。据此补映射：`keyword.declaration` ← 紫（storage 观感）、`keyword.import` ← 青斜体（等价 VS Code `keyword.control.import` 前缀匹配）。注意 `@function.method` 同时捕获方法定义与调用（Vira 中定义红/调用蓝），故保留回退到 `function` 蓝；`@function.builtin`、`@keyword.function/modifier/type` 在 TS 语法中**不存在**（供其他语言语法使用）。
-- **边框校准**（2026-10-24 用户反馈「边框偏暗」）：发丝线族从源项目 6% alpha 上调——`border` = 白 @ 0.14、`border.variant` / `pane_group.border` = 各变体前景族基色 @ 0.12（Zed 画的边框更少更细，需要更高对比）。
+- **边框校准**（2026-10-24 用户反馈「边框偏暗」，两轮）：发丝线族从源项目 6% alpha 上调——第 1 轮 0.14/0.12，第 2 轮 **`border` = 白 @ 0.18、`border.variant` / `pane_group.border` = 各变体前景族基色 @ 0.16**（Zed 画的边框更少更细，需要更高对比）。
+- **斜体渲染的前置条件**（2026-10-24 排查结论）：主题的 `font_style: italic` 机制本身可用（Zed 官方 One 主题同样使用该字段），但 **GPUI 不像 VS Code/Chromium 那样合成假斜体**——buffer 字体没有斜体字形时 italic 静默显示为正体。用户使用 FiraCode Nerd Font Mono（全家族仅字重变体、无斜体，font 清单已证实）→ 斜体不可见。解法是更换带真斜体的等宽字体（JetBrainsMono NF / Cascadia Code NF / Maple Mono NF / Iosevka / Victor Mono 等），主题侧无能为力。
 
 ## 6. 构建管线与工程选型
 

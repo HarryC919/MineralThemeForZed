@@ -19,6 +19,11 @@
 
 ## 已完成工作
 
+### 2026-10-24 · 验收反馈第 2 轮（斜体排查 + 边框二调）
+
+- **斜体仍不显示 → 定位为字体问题，非主题问题**：证据链（a）主题产物确含 `font_style: italic`（keyword.import/comment/namespace 等）；（b）Zed 官方 One 主题使用同一字段（机制可用）；（c）用户 buffer 字体 `FiraCode Nerd Font Mono` 经字体清单证实全家族无斜体字形（仅 Light/Reg/Med/SemBd/Bold/Ret）；（d）VS Code 的 Chromium 渲染器会合成假斜体而 Zed/GPUI 不会 → 同一字体在 VS Code 有斜体、在 Zed 没有。**解法在用户侧**：换带真斜体的等宽字体（JetBrainsMono NF 最接近 FiraCode 观感；备选 Cascadia Code NF / Maple Mono NF / Iosevka / Victor Mono）。research.md 已记录该前置条件。
+- **边框第二档调亮**：`border` 0.14→**0.18**（白）、`border.variant`/`pane_group.border` 0.12→**0.16**（变体前景族基色）；测试同步更新（36 项全绿）。
+
 ### 2026-10-24 · 验收反馈第 1 轮（TS 关键字 + 边框）
 
 - **用户报告**：TS 中 `import` 无斜体；`const`/`type` 非紫色；边框偏暗。
