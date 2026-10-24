@@ -1,0 +1,20 @@
+{
+	"name": "my-dark-theme-zed",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"description": "Build pipeline for the My Dark Theme Zed color-theme extension (themes/my-dark-theme.json is generated, do not edit).",
+	"scripts": {
+		"build": "tsx scripts/build-themes.ts",
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run",
+		"verify": "npm run typecheck && npm test && npm run build"
+	},
+	"devDependencies": {
+		"@types/node": "^24.0.0",
+		"ajv": "^8.17.1",
+		"tsx": "^4.19.0",
+		"typescript": "^5.7.0",
+		"vitest": "^3.0.0"
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"variable": "#D8DFDF",
+	"variable.constant": "#D8DFDF",
+	"variable.readonly": "#D8DFDF",
+	"parameter.declaration": "#D8DFDF",
+	"variable.defaultLibrary": "#D8DFDF",
+	"type": "#FFCB6B",
+	"typeParameter": "#F78C6C",
+	"function": "#82AAFF",
+	"comment": "#546E7A",
+	"enumMember": "#D8DFDF",
+	"class": "#82AAFF",
+	"class.declaration": "#82AAFF",
+	"class.typeHint.builtin": "#FFCB6B",
+	"number": "#F78C6C",
+	"string": "#C3E88D",
+	"module": "#FFCB6B",
+	"selfParameter": "#B2CCD6",
+	"selfParameter.declaration": "#B2CCD6"
+}

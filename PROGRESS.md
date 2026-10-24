@@ -1,0 +1,77 @@
+# PROGRESS.md
+
+开发进度、决策记录与待办。每完成一个可交付单元立即更新本文件。
+
+> 状态图例：`[x]` 完成 · `[~]` 进行中 · `[ ]` 未开始
+
+## 当前状态
+
+**阶段：M1–M3 + M4/M5 可做部分已完成（v0.1.0），待用户在 Zed 中验收** —— 20 个主题已生成并通过全部机器校验（Schema/调色板/accent/HC/覆盖完备性/确定性 33 项断言）。观感级校准与发布决策等待验收反馈。
+
+## 里程碑
+
+- [x] M0 调研与规划（2026-10-24）
+- [x] M1 扩展骨架与构建管线（2026-10-24）
+- [x] M2 语法映射打样（2026-10-24；截图对照并入用户验收）
+- [x] M3 全变体 + High Contrast（2026-10-24）
+- [~] M4 视觉校准（派生色已定稿；观感迭代待验收反馈）
+- [~] M5 收尾（README/LICENSE/CI 完成；发布待用户风险评审）
+
+## 已完成工作
+
+### 2026-10-24 · M1–M5 构建执行（v0.1.0）
+
+- **工程**：TypeScript(strict)+tsx+vitest+ajv，无 Rust。仓库根即扩展根：`extension.toml`（id `my-dark-theme`，schema_version 1）、`data/`（vendor 源项目 6 个颜色文件 + variants/）、`scripts/{lib,ui-map,syntax-map,build-themes}.ts`、`test/build.test.ts`（33 项）、`vitest.config.ts`（限定 test/，防误扫 migrate_source）、`.github/workflows/ci.yml`（含确定性检查 `git diff --exit-code -- themes/`）。
+- **构建管线**（`npm run build` → `themes/my-dark-theme.json`，单 family 20 主题，155KB）：
+  - 合并语义与源项目 build-themes.ts 一致：`ui-shared + variants[v] (+ hc-overrides[v])`，然后 48 个 accentable 键按各自 alpha **重烘焙为 Blue `#5393FF`**（alpha≥1 六位、否则八位）；
+  - UI 映射覆盖 Zed One 主题全部 139 个 UI 键（`test/one-ui-keys.json` 夹具强制完备性），派生规则见 research.md §5.3；
+  - syntax 映射：46 个 One 规范键 + 7 个细分键（keyword.function/modifier/type、keyword.control、constant.builtin、function.builtin、variable.member），13 基色 × palettes.json 得全变体；
+  - 内置 ajv 校验（vendor 的 schema v0.2.0）+ 输出色值全部小写规范化 + 纯函数式 buildFamily（同输入字节级一致）。
+- **校验结果**：typecheck ✅ · vitest 33/33 ✅（Schema、确定性、20 主题命名、One 键覆盖、hex 合法性、调色板逐变体断言、accent 三键 + alpha、HC 覆盖、dim 合成、斜体/字重）· build ✅。
+- **文档**：research.md §4.3/§5.3 更新为定稿；AGENTS.md accent 条目改为 Blue；plan.md 里程碑状态更新。
+
+## 用户验收清单（M4 观感校准输入）
+
+1. **安装**：Zed → Extensions → Install Dev Extension → 选仓库根；主题选择器 `cmd-k cmd-t` 出现 family「My Dark Theme」20 项。
+2. **重点看**（对应已知有损点/派生色）：活动行高亮（源为行边框，现为 15% 底色）、tab 无 accent 指示条（Zed 无该 token）、CSS 属性名红色（Vira 为亮蓝）、关键字斜体是否生效（取决于语法捕获）、查找当前项的 Blue 底色、终端 dim 色、选区/光标（灰选区 + 黄光标）。
+3. **待实测的开放问题**：dev extension 下主题文件改动是否热重载；`players[0].selection` 是否即本地选区色；`accents[]` 在 UI 中的实际表现。
+4. 反馈方式：直接说现象，改动会落在 `scripts/ui-map.ts` / `syntax-map.ts` + `data/`，重跑 `npm run verify`。
+
+### 2026-10-24 · M0 调研与规划
+
+- **Zed 扩展信息收集**（来源：DevWeb.txt 指向的官方文档 + Theme JSON Schema v0.2.0 + Zed 内置 One 主题 + Catppuccin 扩展实例）：
+  - theme-only 扩展 = `extension.toml` + `themes/*.json`，无 Rust；本地用 dev extension 安装调试。
+  - Theme Family JSON：`{author, name, themes[{name, appearance, style}]}`；style 约 141 键 + `syntax`（Tree-sitter capture 名，参照 One 主题 46 键）+ `players`（本地光标/选区走 `players[0]`）+ `accents`。
+  - 发布 = 向 `zed-industries/extensions` 提 PR（公开仓库 + 接受的 license + theme 结尾的 id）；发布与否留作用户决策。
+- **源项目数据模型确认**：81 条 tokenColors 规则仅引用 13 个基色 × `palettes.json` → 全变体语法色可程序化推导；这是 Zed 版 syntax 映射表的设计依据。
+- **关键差异与策略**（详见 `docs/research.md` §4）：
+  1. TextMate scope → Tree-sitter capture：按类目建映射表，有损复刻（keyword/storage 不可分，取青）；
+  2. `semanticTokenColors` 无对应机制，弃用；
+  3. 无运行时 → accent 烘焙原生 teal（= VS Code 版 `accent: Default`）；
+  4. HC 作为独立主题命名，无档位元数据；
+  5. VS Code 279 UI 色 → Zed 141 键：~60% 直接对应，其余语义归类/派生（映射表草案见 research.md §5）。
+- **产出文档**：`docs/research.md`、`docs/plan.md`、`AGENTS.md`、本文件。
+- 待 M1 实测的开放问题：dev extension 主题文件热重载行为；`players[0].selection` 是否即本地选区；`accents[]` 实际用途。
+- **Accent 专项分析（2026-10-24）**：程序化核对 `ui-shared.json` × `customization.json`——49 个 accent 染色键中能在 Zed 找到对应 token 的仅约 4–6 个（`text.accent`、`icon.accent`、`link_text.hover`、`element.active` 弱染色，可选 `border.selected`）；tab 底部指示条、按钮/徽章/progressBar/notebook/chat 等在 Zed 均无 token。结论：Zed 里 accent 的"表面积"远小于 VS Code，方案定为 A（MVP 烘焙原生 teal）先行，C（`theme_overrides` 片段）满足日常换色，B（accent 变体主题）为可选追加。
+
+## 决策记录
+
+| 日期 | 决策 | 理由 |
+|---|---|---|
+| 2026-10-24 | 范围只含 color theme；icon 另立项目 | 用户指定（Zed 插件生态 color/icon 分开实现） |
+| 2026-10-24 | 技术栈 TS(strict)+tsx+vitest+ajv，无 Rust | theme-only 扩展不需要 Rust；与用户源项目工具链习惯一致 |
+| 2026-10-24 | 单文件 `themes/my-dark-theme.json` 承载 family + 20 主题 | 单 family 单文件，规避多文件 family 合并行为的不确定性 |
+| 2026-10-24 | `data/` vendor 自 `migrate_source/data`，手动同步；构建脚本不跨目录读源 | 未来公开仓库时源项目不随包；保证扩展自包含 |
+| 2026-10-24 | accent 烘焙原生 teal | Zed 无运行时；原生色 = VS Code 版 `Default` 档观感，零额外决策 |
+| 2026-10-24 | 仓库根即扩展根；`migrate_source/` gitignore | dev extension 直接选本目录；公开时不泄露源项目 |
+| 2026-10-24 | 发布（registry）延后为可选里程碑 M5，需用户确认 | 发布要求公开仓库 + 开源 license，属用户决策（延续源项目"仅个人使用"政策） |
+| 2026-10-24 | Git 仓库已初始化（本目录根，扩展即仓库根） | 用户执行 |
+| 2026-10-24 | **暂不公开发布**，待法律/合规风险评估后再决策 | 用户要求；风险摘要：配色值不受版权保护、未复制 Vira 闭源代码/图标字体/文案资产、命名与商标无冲突；若发布需另过 registry 自查（查重、license、文案原创） |
+| 2026-10-24 | Accent 方案：A（MVP 烘焙原生 teal）先行；C（`theme_overrides` 用户侧覆盖片段）满足日常换色；B（accent 变体主题）可选追加 | Zed 主题为静态 JSON 无运行时；accent 受影响 token 仅 4–6 个，B 的"每变体 20 个新主题"性价比低；A→B 可无缝升级（构建已参数化空间） |
+| 2026-10-24 | **Accent 修订：A 方案落定，但烘焙色改为 Blue `#5393FF`**（非原生 teal） | 用户拍板：Vira 原生 teal 太轻，Blue 观感更好；等价于 VS Code 版出厂 Blue 基线（v0.5.2）。C（theme_overrides）记为未来可能的变更手段 |
+
+## 待办 / 已知问题
+
+- [ ] 用户验收（见上方清单）→ M4 观感迭代
+- [ ] 用户风险评审后决定是否公开发布（M5 尾项；发布前需：公开仓库 + 换 MIT 等 license + 补 repository 字段 + 评估 registry 查重）
+- [ ] 数据同步：`migrate_source/data` 改色后手动重新 vendor 到 `data/`（6 文件 + variants/；`semanticTokenColors.json` 仅存档，Zed 不使用）

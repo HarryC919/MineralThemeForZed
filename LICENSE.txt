@@ -1,0 +1,15 @@
+My Dark Theme for Zed
+Copyright (c) 2026 the project owner
+
+PRIVATE / PERSONAL USE ONLY.
+
+This theme extension is for the owner's local, personal use in Zed via
+a dev extension and a private repository. It must NOT be distributed
+or published to the Zed extension registry unless the project owner
+explicitly decides to do so (publishing would additionally require
+relicensing under an accepted open-source license such as MIT).
+
+Color values are derived from the owner's own VS Code theme data
+(data/), which in turn builds on the open Material color palette.
+No third-party code or binary assets are included; the JSON theme
+output is generated entirely by scripts/ in this repository.
