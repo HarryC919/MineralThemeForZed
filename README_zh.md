@@ -28,16 +28,16 @@
 
 ## 安装
 
-### 从 CI 产物安装（下载包）
+### 从 Releases 页安装（下载包）
 
-每次 CI 都会附上可直接使用的 bundle（`extension.toml` + 生成的 `themes/`）：
+每个打 tag 的版本都会附上可直接使用的 bundle（`extension.toml` + 生成的 `themes/`）：
 
-1. 从最新一次 CI run 下载 `mineral-theme-zed-<version>.zip`。
+1. 从 [Releases 页](https://github.com/HarryC919/MineralThemeForZed/releases)下载 `mineral-theme-<version>.zip`。
 2. 解压到任意位置。
 3. Zed：打开 Extensions 页（`zed: extensions`）→ **Install Dev Extension** → 选择解压后的文件夹。
 4. 主题选择器（`cmd-k cmd-t` / `ctrl-k ctrl-t`）中选择变体。
 
-> 注意：Zed 没有可侧载的包格式（没有 vsix 等价物）——扩展要么以 dev extension 方式从目录加载，要么从[扩展市场](https://zed.dev/extensions)安装。CI 的 zip 就是那个目录的压缩包。
+> 注意：Zed 没有可侧载的包格式（没有 vsix 等价物）——扩展要么以 dev extension 方式从目录加载，要么从[扩展市场](https://zed.dev/extensions)安装。Release 的 zip 就是那个目录的压缩包。
 
 ### 从源码以 dev extension 安装
 

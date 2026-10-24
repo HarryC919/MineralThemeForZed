@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run verify
+      - name: Package extension bundle
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          TOML_VERSION=$(grep -m1 '^version' extension.toml | sed 's/.*"\(.*\)".*/\1/')
+          if [ "$VERSION" != "$TOML_VERSION" ]; then
+            echo "tag $GITHUB_REF_NAME does not match extension.toml version $TOML_VERSION"
+            exit 1
+          fi
+          zip -r "mineral-theme-${VERSION}.zip" extension.toml themes LICENSE.txt README.md README_zh.md
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: mineral-theme-*.zip
+          generate_release_notes: true

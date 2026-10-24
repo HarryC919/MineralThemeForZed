@@ -26,16 +26,16 @@ Every variant also has a **High Contrast** edition (e.g. *Mineral Theme Carbon H
 
 ## Installation
 
-### From a downloaded bundle (CI artifact)
+### From the Releases page
 
-Every CI run attaches a ready-to-use bundle (`extension.toml` + generated `themes/`):
+Each tagged version ships a ready-to-use bundle (`extension.toml` + generated `themes/`) as a release asset:
 
-1. Download the `mineral-theme-zed-<version>.zip` artifact from the latest CI run.
+1. Download `mineral-theme-<version>.zip` from the [Releases page](https://github.com/HarryC919/MineralThemeForZed/releases).
 2. Unzip it anywhere.
 3. In Zed: open the Extensions page (`zed: extensions`) → **Install Dev Extension** → select the unzipped folder.
 4. Open the theme selector (`cmd-k cmd-t` / `ctrl-k ctrl-t`) and pick a variant.
 
-> Note: Zed has no side-loadable package format (no vsix equivalent) — extensions are either loaded as dev extensions from a directory or installed from the [extension registry](https://zed.dev/extensions). The CI bundle is exactly that directory, zipped.
+> Note: Zed has no side-loadable package format (no vsix equivalent) — extensions are either loaded as dev extensions from a directory or installed from the [extension registry](https://zed.dev/extensions). The release zip is exactly that directory, zipped.
 
 ### As a dev extension (from source)
 
