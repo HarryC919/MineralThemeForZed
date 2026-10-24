@@ -1,6 +1,6 @@
 # My Dark Theme for Zed
 
-A dark theme family for [Zed](https://zed.dev) with **10 carefully tuned background variants**, each shipped in a normal and a high-contrast flavor — **20 themes** in a single family. Syntax colors are built on the classic open Material palette, with per-variant desaturation, per-variant terminal ANSI colors, and an accent that stays consistent across every surface.
+A dark theme family for [Zed](https://zed.dev) with **10 background variants**, each shipped in a normal and a high-contrast flavor — **20 themes** in a single family. Syntax colors are built on the classic open Material palette, with per-variant desaturation, per-variant terminal ANSI colors, and an accent that stays consistent across every surface.
 
 ![My Dark Theme Carbon preview](docs/images/preview-carbon.png)
 
@@ -100,6 +100,10 @@ The build is deterministic (byte-identical output for identical input) and valid
 ## Publishing
 
 This extension is intended for the [Zed extension registry](https://zed.dev/extensions). Publishing requirements are already accounted for in the design: theme-only extension (no Rust), registry-friendly id (`my-dark-theme`), English description, and a single generated theme file. The remaining steps live in [PROGRESS.md](PROGRESS.md): public repository, MIT license, `repository` field in `extension.toml`, then a PR to `zed-industries/extensions` (git submodule + `extensions.toml` entry).
+
+## Development Agent
+
+This extension was built end-to-end with the **ZCode** coding agent, powered by **GLM-5.3-Flash** (Z.ai) — research, milestone planning, the data pipeline and mapping tables, the 20 generated themes, the test suite, pixel-level rendering comparisons between VS Code and Zed, and these very docs. Human review covered every decision that mattered: naming, accent color, scope, and whether to publish.
 
 ## Acknowledgments
 

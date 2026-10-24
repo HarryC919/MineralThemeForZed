@@ -103,6 +103,6 @@
 
 ## 待办 / 已知问题
 
-- [ ] 用户验收（见上方清单）→ M4 观感迭代
-- [ ] 用户风险评审后决定是否公开发布（M5 尾项；发布前需：公开仓库 + 换 MIT 等 license + 补 repository 字段 + 评估 registry 查重）
+- [ ] **扩展更名**：候选方案已提供（Mineral/Basalt/Stratum/Terrane 系 + 保留现名），待用户选定后一次性全局更名（extension.toml、build-themes.ts 的 FAMILY_NAME 与主题命名、测试断言、CI 产物名、双语 README、LICENSE）
+- [ ] 用户风险评审后决定是否公开发布（发布前需：公开仓库 + 换 MIT 等 license + 补 repository 字段 + 评估 registry 查重）
 - [ ] 数据同步：`migrate_source/data` 改色后手动重新 vendor 到 `data/`（6 文件 + variants/；`semanticTokenColors.json` 仅存档，Zed 不使用）

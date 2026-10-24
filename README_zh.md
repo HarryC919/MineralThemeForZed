@@ -2,7 +2,7 @@
 
 > 英文版 [README.md](README.md) 为正式版，本文件为中文对照；两者内容保持同步。
 
-一个面向 [Zed](https://zed.dev) 的暗色主题家族：**10 个精心调校的背景变体**，每个都有常规与高对比两档——单 family 共 **20 个主题**。语法色基于经典开源 Material 色板构建，各变体带独立的去饱和调色板、独立终端 ANSI 配色，accent 全表面一致。
+一个面向 [Zed](https://zed.dev) 的暗色主题家族：**10 个背景变体**，每个都有常规与高对比两档——单 family 共 **20 个主题**。语法色基于经典开源 Material 色板构建，各变体带独立的去饱和调色板、独立终端 ANSI 配色，accent 全表面一致。
 
 ![My Dark Theme Carbon 预览](docs/images/preview-carbon.png)
 
@@ -102,6 +102,10 @@ npm test          # 仅测试
 ## 发布
 
 本扩展计划上架 [Zed 扩展市场](https://zed.dev/extensions)。设计上已满足发布前提：theme-only（无 Rust）、合规 id（`my-dark-theme`）、英文描述、单一生成主题文件。剩余步骤见 [PROGRESS.md](PROGRESS.md)：公开仓库、MIT license、`extension.toml` 补 `repository` 字段，然后向 `zed-industries/extensions` 提 PR（git submodule + `extensions.toml` 条目）。
+
+## 开发 Agent
+
+本扩展由 **ZCode** 编码 Agent 端到端完成，底层模型为 **GLM-5.3-Flash**（Z.ai）——调研、里程碑规划、数据管线与映射表、20 个生成主题、测试套件、VS Code 与 Zed 的像素级渲染对比，以及你正在读的这些文档。关键决策（命名、accent 色、范围、是否上架）均由人工把关。
 
 ## 致谢
 
