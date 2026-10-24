@@ -1,10 +1,10 @@
-# My Dark Theme for Zed（中文说明）
+# Mineral Theme for Zed（中文说明）
 
 > 英文版 [README.md](README.md) 为正式版，本文件为中文对照；两者内容保持同步。
 
 一个面向 [Zed](https://zed.dev) 的暗色主题家族：**10 个背景变体**，每个都有常规与高对比两档——单 family 共 **20 个主题**。语法色基于经典开源 Material 色板构建，各变体带独立的去饱和调色板、独立终端 ANSI 配色，accent 全表面一致。
 
-![My Dark Theme Carbon 预览](docs/images/preview-carbon.png)
+![Mineral Theme Carbon 预览](docs/images/preview-carbon.png)
 
 ## 主题
 
@@ -16,7 +16,7 @@
 | Deepforest | `#111816` | Teal | `#263238` |
 | Graphene | `#212121` | Montana | `#130F15` |
 
-每个变体都有对应的 **High Contrast** 版（如 *My Dark Theme Carbon High Contrast*），编辑器背景提亮一档并重新校准对比度。主题选择器中呈现为单一 family：**My Dark Theme**。
+每个变体都有对应的 **High Contrast** 版（如 *Mineral Theme Carbon High Contrast*），编辑器背景提亮一档并重新校准对比度。主题选择器中呈现为单一 family：**Mineral Theme**。
 
 ## 设计要点
 
@@ -32,7 +32,7 @@
 
 每次 CI 都会附上可直接使用的 bundle（`extension.toml` + 生成的 `themes/`）：
 
-1. 从最新一次 CI run 下载 `my-dark-theme-zed-<version>.zip`。
+1. 从最新一次 CI run 下载 `mineral-theme-zed-<version>.zip`。
 2. 解压到任意位置。
 3. Zed：打开 Extensions 页（`zed: extensions`）→ **Install Dev Extension** → 选择解压后的文件夹。
 4. 主题选择器（`cmd-k cmd-t` / `ctrl-k ctrl-t`）中选择变体。
@@ -45,7 +45,7 @@
 git clone <本仓库>
 cd MyDarkThemeForZed
 npm install
-npm run build        # 生成 themes/my-dark-theme.json
+npm run build        # 生成 themes/mineral-theme.json
 ```
 
 然后在 Zed 中 **Install Dev Extension**，选择仓库根目录（含 `extension.toml` 的目录）。
@@ -59,7 +59,7 @@ npm run build        # 生成 themes/my-dark-theme.json
 ```json
 {
   "theme_overrides": {
-    "My Dark Theme Carbon": {
+    "Mineral Theme Carbon": {
       "text.accent": "#FF669Eff",
       "icon.accent": "#FF669Eff",
       "link_text.hover": "#FF669Eff",
@@ -77,10 +77,10 @@ npx tsx scripts/build-themes.ts --accent=pink   # 14 个预设名或任意 #hex
 
 ## 开发
 
-仓库根即扩展根。`themes/my-dark-theme.json` 是**生成产物**——改色请改 `data/` 与 `scripts/` 里的映射表，不要手改输出。
+仓库根即扩展根。`themes/mineral-theme.json` 是**生成产物**——改色请改 `data/` 与 `scripts/` 里的映射表，不要手改输出。
 
 ```
-extension.toml            Zed 扩展清单（id: my-dark-theme）
+extension.toml            Zed 扩展清单（id: mineral-theme）
 themes/                   生成的主题家族（单文件 20 主题）
 data/                     颜色唯一数据源（调色板、逐变体 UI 色、HC 覆盖、accent 规格）
 scripts/ui-map.ts         VS Code → Zed UI 色映射（覆盖 One 主题全部 139 键，有测试）
@@ -101,7 +101,7 @@ npm test          # 仅测试
 
 ## 发布
 
-本扩展计划上架 [Zed 扩展市场](https://zed.dev/extensions)。设计上已满足发布前提：theme-only（无 Rust）、合规 id（`my-dark-theme`）、英文描述、单一生成主题文件。剩余步骤见 [PROGRESS.md](PROGRESS.md)：公开仓库、MIT license、`extension.toml` 补 `repository` 字段，然后向 `zed-industries/extensions` 提 PR（git submodule + `extensions.toml` 条目）。
+本扩展计划上架 [Zed 扩展市场](https://zed.dev/extensions)。设计上已满足发布前提：theme-only（无 Rust）、合规 id（`mineral-theme`）、英文描述、单一生成主题文件。剩余步骤见 [PROGRESS.md](PROGRESS.md)：公开仓库、MIT license、`extension.toml` 补 `repository` 字段，然后向 `zed-industries/extensions` 提 PR（git submodule + `extensions.toml` 条目）。
 
 ## 开发 Agent
 
@@ -109,7 +109,7 @@ npm test          # 仅测试
 
 ## 致谢
 
-- 颜色值衍生自作者同名 VS Code 主题，其配色基于开源 **Material 色板**（因 Material Theme 与 Vira Theme 而广为人知）。
+- 颜色值衍生自作者的 VS Code 主题 *My Dark Theme*，其配色基于开源 **Material 色板**（因 Material Theme 与 Vira Theme 而广为人知）。
 - 语法键集合遵循 Zed 内置 **One** 主题的约定；主题格式对齐[官方 Theme JSON Schema v0.2.0](https://zed.dev/schema/themes/v0.2.0.json)。
 
 ## License

@@ -1,6 +1,6 @@
 # 渲染对比示例语料库
 
-用于对比 **VS Code（My Dark Theme Carbon）** 与 **Zed（My Dark Theme Carbon）** 的语法渲染差异。每个文件刻意覆盖尽可能多的语法构造：
+用于对比 **VS Code（Mineral Theme Carbon）** 与 **Zed（Mineral Theme Carbon）** 的语法渲染差异。每个文件刻意覆盖尽可能多的语法构造：
 
 - 关键字：声明（const/let/fn/class/interface/type…）、控制流（if/for/while/match/try…）、修饰符（public/static/final…）、导入（import/use/using…）
 - 函数：定义 / 调用 / 方法 / 内置函数 / 宏 / lambda

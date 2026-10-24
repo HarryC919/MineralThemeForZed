@@ -1,5 +1,7 @@
 # VS Code vs Zed 渲染对比记录（2026-10-24，两轮）
 
+> 注：对比进行时扩展名为 **My Dark Theme**，后更名为 **Mineral Theme**（同日）；文中主题名按当时称呼保留。
+
 对比语料：`samples/`（23 个语言/文件类型）；两个编辑器均为 **My Dark Theme Carbon**。
 方法与工具链：CLI 打开同一目录 → computer use 逐文件截图（VS Code 走无障碍文件树点击，Zed 走 cmd+P）→ 三层验证：
 

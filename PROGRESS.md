@@ -101,8 +101,10 @@
 | 2026-10-24 | Accent 方案：A（MVP 烘焙原生 teal）先行；C（`theme_overrides` 用户侧覆盖片段）满足日常换色；B（accent 变体主题）可选追加 | Zed 主题为静态 JSON 无运行时；accent 受影响 token 仅 4–6 个，B 的"每变体 20 个新主题"性价比低；A→B 可无缝升级（构建已参数化空间） |
 | 2026-10-24 | **Accent 修订：A 方案落定，但烘焙色改为 Blue `#5393FF`**（非原生 teal） | 用户拍板：Vira 原生 teal 太轻，Blue 观感更好；等价于 VS Code 版出厂 Blue 基线（v0.5.2）。C（theme_overrides）记为未来可能的变更手段 |
 
+| 2026-10-24 | 注释前缀着色能力将由用户**另立独立插件项目**实现，不在本项目范围 | 用户决策 |
+| 2026-10-24 | **扩展更名 Mineral Theme**（id `mineral-theme`，family/主题名/产物文件/CI 产物/双语 README/LICENSE/样例语料同步更名；产物文件 themes/my-dark-theme.json → themes/mineral-theme.json） | 用户从矿物系候选（Mineral/Basalt/Stratum/Terrane/Lithic）中选定 Mineral——与 10 个地质系变体名（Carbon/Graphene/Clay…）谱系一致；VS Code 版项目名保留 My Dark Theme 不变 |
+
 ## 待办 / 已知问题
 
-- [ ] **扩展更名**：候选方案已提供（Mineral/Basalt/Stratum/Terrane 系 + 保留现名），待用户选定后一次性全局更名（extension.toml、build-themes.ts 的 FAMILY_NAME 与主题命名、测试断言、CI 产物名、双语 README、LICENSE）
 - [ ] 用户风险评审后决定是否公开发布（发布前需：公开仓库 + 换 MIT 等 license + 补 repository 字段 + 评估 registry 查重）
 - [ ] 数据同步：`migrate_source/data` 改色后手动重新 vendor 到 `data/`（6 文件 + variants/；`semanticTokenColors.json` 仅存档，Zed 不使用）

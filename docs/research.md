@@ -1,10 +1,10 @@
-# My Dark Theme for Zed · 迁移调研（2026-10-24）
+# Mineral Theme for Zed · 迁移调研（2026-10-24）
 
 本轮信息收集的产出。数据来源：`DevWeb.txt` 指向的 [Zed 官方文档](https://zed.dev/docs/extensions/themes)、[Theme JSON Schema v0.2.0](https://zed.dev/schema/themes/v0.2.0.json)、[发布文档](https://zed.dev/docs/extensions/publishing/overview.md)、Zed 内置 One 主题（`assets/themes/one/one.json`，作为 syntax 规范键名的参照）、Catppuccin Zed 扩展（作为 theme-only 扩展结构的参照），以及 `migrate_source/`（VS Code 版，数据与决策见其 `AGENTS.md` / `PROGRESS.md`）。
 
 ## 1. 目标与范围
 
-把 `migrate_source/`（VS Code 版 My Dark Theme，视觉对标 Vira Theme）中的 **颜色主题** 复刻为 Zed 主题扩展。
+把 `migrate_source/`（VS Code 版 Mineral Theme，视觉对标 Vira Theme）中的 **颜色主题** 复刻为 Zed 主题扩展。
 
 - **做**：10 个背景变体 × 常规/High Contrast = 20 个颜色主题的观感复刻（工作台 UI 色 + 编辑器语法色 + 终端 ANSI）。
 - **不做**（Zed 插件分开实现）：文件图标主题、产品图标主题（后续独立 icon 主题扩展）；VS Code 版的运行时自定义（accent 染色等，Zed 主题是纯静态 JSON，无运行时，见 §4.3）。
@@ -33,8 +33,8 @@
 - `extension.toml` 最小字段（参照 Catppuccin 实例）：
 
   ```toml
-  id = "my-dark-theme"        # 发布前提：kebab-case、唯一、以 -theme 结尾、不含 zed/extension 字样
-  name = "My Dark Theme"
+  id = "mineral-theme"        # 发布前提：kebab-case、唯一、以 -theme 结尾、不含 zed/extension 字样
+  name = "Mineral Theme"
   version = "0.0.1"
   schema_version = 1
   authors = ["..."]
@@ -53,10 +53,10 @@
 ```json
 {
   "author": "...",
-  "name": "My Dark Theme",          // family 名（选择器里的分组）
+  "name": "Mineral Theme",          // family 名（选择器里的分组）
   "themes": [
     {
-      "name": "My Dark Theme Carbon", // 单个主题（选择器里的一行）
+      "name": "Mineral Theme Carbon", // 单个主题（选择器里的一行）
       "appearance": "dark",           // light | dark
       "style": { "...": "..." }       // ThemeStyle，约 141 键
     }
@@ -111,11 +111,11 @@
 VS Code 版的 `viraTheme.accent`（14 色 + customAccent，48 个 accentable 键按透明度染色）依赖运行时改写主题文件，Zed 主题是静态 JSON 且扩展无设置界面，**机制不可复制**。策略（2026-10-24 用户拍板）：
 
 - **accent 烘焙为 Blue `#5393FF`**（等价 VS Code 版 v0.5.2+ 出厂基线；用户偏好，Vira 原生 teal 太轻）。构建管线支持 `--accent=<name|#hex>` 整体重烘焙（14 个预设色在 `customization.json`）。
-- 用户侧临时换色可用 Zed 原生 `theme_overrides`（受影响键仅 4–6 个，见 §5.3）；accent 变体主题（如 "My Dark Theme Blue" 独立 family）作为可选后续，零返工成本。
+- 用户侧临时换色可用 Zed 原生 `theme_overrides`（受影响键仅 4–6 个，见 §5.3）；accent 变体主题（如 "Mineral Theme Blue" 独立 family）作为可选后续，零返工成本。
 
 ### 4.4 High Contrast 无独立档位
 
-Zed 无 high-contrast 元数据，HC 版直接作为独立主题 `My Dark Theme <Variant> High Contrast`（appearance 仍 `dark`），应用 `hc-overrides[v]`。
+Zed 无 high-contrast 元数据，HC 版直接作为独立主题 `Mineral Theme <Variant> High Contrast`（appearance 仍 `dark`），应用 `hc-overrides[v]`。
 
 ### 4.5 斜体/字重
 
@@ -254,7 +254,7 @@ Syntax 侧实现要点（较草案的修订）：
 
 - **语言/工具**：TypeScript（strict）+ tsx 跑脚本 + vitest 校验 + ajv 做 JSON Schema 校验——与源项目习惯一致。**不引入 Rust**。
 - **数据源**：把 `migrate_source/data/` 中颜色相关文件（`tokenColors/palettes/semanticTokenColors/ui-shared/variants/hc-overrides/customization`）**vendor** 进本仓库 `data/`（供脚本与发布使用；`migrate_source/` 本身 gitignore，仅本地参考）。跨仓库同步为手动（源项目改色后重新拷贝），`variant-keys.json`/`icons.json` 不需要。
-- **输出**：单文件 `themes/my-dark-theme.json` = family「My Dark Theme」+ 全部 20 个主题（单文件保证同 family 合并展示；不拆多文件避免 family 行为疑问）。
+- **输出**：单文件 `themes/mineral-theme.json` = family「Mineral Theme」+ 全部 20 个主题（单文件保证同 family 合并展示；不拆多文件避免 family 行为疑问）。
 - **校验**：
   1. ajv 校验产物符合 `https://zed.dev/schema/themes/v0.2.0.json`；
   2. 确定性：两次构建输出逐字节一致；

@@ -1,8 +1,8 @@
-# My Dark Theme for Zed
+# Mineral Theme for Zed
 
 A dark theme family for [Zed](https://zed.dev) with **10 background variants**, each shipped in a normal and a high-contrast flavor — **20 themes** in a single family. Syntax colors are built on the classic open Material palette, with per-variant desaturation, per-variant terminal ANSI colors, and an accent that stays consistent across every surface.
 
-![My Dark Theme Carbon preview](docs/images/preview-carbon.png)
+![Mineral Theme Carbon preview](docs/images/preview-carbon.png)
 
 ## Themes
 
@@ -14,7 +14,7 @@ A dark theme family for [Zed](https://zed.dev) with **10 background variants**, 
 | Deepforest | `#111816` | Teal | `#263238` |
 | Graphene | `#212121` | Montana | `#130F15` |
 
-Every variant also has a **High Contrast** edition (e.g. *My Dark Theme Carbon High Contrast*) with lifted editor backgrounds and contrast-tuned UI colors. Themes appear in the picker as one family: **My Dark Theme**.
+Every variant also has a **High Contrast** edition (e.g. *Mineral Theme Carbon High Contrast*) with lifted editor backgrounds and contrast-tuned UI colors. Themes appear in the picker as one family: **Mineral Theme**.
 
 ## Design notes
 
@@ -30,7 +30,7 @@ Every variant also has a **High Contrast** edition (e.g. *My Dark Theme Carbon H
 
 Every CI run attaches a ready-to-use bundle (`extension.toml` + generated `themes/`):
 
-1. Download the `my-dark-theme-zed-<version>.zip` artifact from the latest CI run.
+1. Download the `mineral-theme-zed-<version>.zip` artifact from the latest CI run.
 2. Unzip it anywhere.
 3. In Zed: open the Extensions page (`zed: extensions`) → **Install Dev Extension** → select the unzipped folder.
 4. Open the theme selector (`cmd-k cmd-t` / `ctrl-k ctrl-t`) and pick a variant.
@@ -43,7 +43,7 @@ Every CI run attaches a ready-to-use bundle (`extension.toml` + generated `theme
 git clone <this repository>
 cd MyDarkThemeForZed
 npm install
-npm run build        # generates themes/my-dark-theme.json
+npm run build        # generates themes/mineral-theme.json
 ```
 
 Then **Install Dev Extension** in Zed and select the repository root (the folder containing `extension.toml`).
@@ -57,7 +57,7 @@ The baked accent can be overridden two ways:
 ```json
 {
   "theme_overrides": {
-    "My Dark Theme Carbon": {
+    "Mineral Theme Carbon": {
       "text.accent": "#FF669Eff",
       "icon.accent": "#FF669Eff",
       "link_text.hover": "#FF669Eff",
@@ -75,10 +75,10 @@ npx tsx scripts/build-themes.ts --accent=pink   # 14 preset names or any #hex
 
 ## Development
 
-The repository root is the extension root. `themes/my-dark-theme.json` is **generated** — edit `data/` and the mapping tables in `scripts/`, never the output.
+The repository root is the extension root. `themes/mineral-theme.json` is **generated** — edit `data/` and the mapping tables in `scripts/`, never the output.
 
 ```
-extension.toml            Zed extension manifest (id: my-dark-theme)
+extension.toml            Zed extension manifest (id: mineral-theme)
 themes/                   generated theme family (single file, 20 themes)
 data/                     color source of truth (palettes, per-variant UI colors, HC overrides, accent spec)
 scripts/ui-map.ts         VS Code → Zed UI color mapping (all 139 One-theme keys, coverage-tested)
@@ -99,7 +99,7 @@ The build is deterministic (byte-identical output for identical input) and valid
 
 ## Publishing
 
-This extension is intended for the [Zed extension registry](https://zed.dev/extensions). Publishing requirements are already accounted for in the design: theme-only extension (no Rust), registry-friendly id (`my-dark-theme`), English description, and a single generated theme file. The remaining steps live in [PROGRESS.md](PROGRESS.md): public repository, MIT license, `repository` field in `extension.toml`, then a PR to `zed-industries/extensions` (git submodule + `extensions.toml` entry).
+This extension is intended for the [Zed extension registry](https://zed.dev/extensions). Publishing requirements are already accounted for in the design: theme-only extension (no Rust), registry-friendly id (`mineral-theme`), English description, and a single generated theme file. The remaining steps live in [PROGRESS.md](PROGRESS.md): public repository, MIT license, `repository` field in `extension.toml`, then a PR to `zed-industries/extensions` (git submodule + `extensions.toml` entry).
 
 ## Development Agent
 
@@ -107,7 +107,7 @@ This extension was built end-to-end with the **ZCode** coding agent, powered by 
 
 ## Acknowledgments
 
-- Color values derive from the author's VS Code theme of the same name, built on the open **Material color palette** (as popularized by Material Theme and Vira Theme).
+- Color values derive from the author's VS Code theme *My Dark Theme*, built on the open **Material color palette** (as popularized by Material Theme and Vira Theme).
 - The syntax key set follows the conventions of Zed's built-in **One** theme; the theme format targets the [official Theme JSON Schema v0.2.0](https://zed.dev/schema/themes/v0.2.0.json).
 
 ## License

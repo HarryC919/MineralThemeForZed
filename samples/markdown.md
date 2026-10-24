@@ -1,4 +1,4 @@
-# My Dark Theme 渲染示例
+# Mineral Theme 渲染示例
 
 > 一个用于对比 VS Code 与 Zed 渲染的 Markdown 文件。
 

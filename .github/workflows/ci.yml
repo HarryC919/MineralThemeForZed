@@ -25,10 +25,10 @@ jobs:
         run: |
           VERSION=$(grep -m1 '^version' extension.toml | sed 's/.*"\(.*\)".*/\1/')
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          zip -r "my-dark-theme-zed-${VERSION}.zip" extension.toml themes LICENSE.txt README.md README_zh.md
+          zip -r "mineral-theme-zed-${VERSION}.zip" extension.toml themes LICENSE.txt README.md README_zh.md
       - name: Upload bundle artifact
         uses: actions/upload-artifact@v4
         with:
-          name: my-dark-theme-zed-${{ steps.package.outputs.version }}
-          path: my-dark-theme-zed-*.zip
+          name: mineral-theme-zed-${{ steps.package.outputs.version }}
+          path: mineral-theme-zed-*.zip
           if-no-files-found: error

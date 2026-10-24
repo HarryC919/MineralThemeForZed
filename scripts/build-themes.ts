@@ -1,4 +1,4 @@
-// Theme family builder: data/ -> themes/my-dark-theme.json (Zed ThemeFamily).
+// Theme family builder: data/ -> themes/mineral-theme.json (Zed ThemeFamily).
 //
 // Replicates the merge semantics of the VS Code project's build-themes.ts:
 //   colors = ui-shared + variants/<v> (+ hc-overrides when HC)
@@ -31,7 +31,7 @@ const dataDir = path.join(root, 'data');
 const outDir = path.join(root, 'themes');
 
 const DEFAULT_ACCENT = 'blue';
-const FAMILY_NAME = 'My Dark Theme';
+const FAMILY_NAME = 'Mineral Theme';
 const AUTHOR = 'Harry';
 
 const VARIANT_ORDER = [
@@ -105,7 +105,7 @@ export function buildTheme(variant: string, highContrast: boolean, accentHex: st
 	});
 
 	return {
-		name: `My Dark Theme ${cap(variant)}${highContrast ? ' High Contrast' : ''}`,
+		name: `Mineral Theme ${cap(variant)}${highContrast ? ' High Contrast' : ''}`,
 		appearance: 'dark',
 		style: { ...ui.style, syntax: buildSyntaxStyle(palette), players: ui.players, accents: ui.accents },
 	};
@@ -139,7 +139,7 @@ function main(): void {
 	const family = buildFamily(accentSpec);
 	validateAgainstSchema(family);
 
-	const outFile = path.join(outDir, 'my-dark-theme.json');
+	const outFile = path.join(outDir, 'mineral-theme.json');
 	writeJson(outFile, family);
 	console.log(
 		`✓ ${path.relative(root, outFile)}  themes=${family.themes.length}  accent=${resolveAccent(accentSpec)}`,

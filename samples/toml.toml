@@ -1,6 +1,6 @@
 # TOML sample: tables, inline tables, arrays, dates, multi-line strings
 schema_version = 1
-title = "My Dark Theme for Zed"
+title = "Mineral Theme for Zed"
 enabled = true
 disabled = false
 ratio = 1.618
@@ -21,7 +21,7 @@ since = 2026-10-24
 tags = ["owner", "admin"]
 
 [theme]
-family = "My Dark Theme"
+family = "Mineral Theme"
 accent = "#5393FF"              # baked accent
 "quoted key" = "supports spaces"
 literal = 'C:\path\no\escapes'
@@ -34,13 +34,13 @@ raw \n stays
 '''
 
 [[themes]]
-name = "My Dark Theme Carbon"
+name = "Mineral Theme Carbon"
 background = "#0A0A0A"
 high_contrast = false
 ratio = 1.618
 
 [[themes]]
-name = "My Dark Theme Carbon High Contrast"
+name = "Mineral Theme Carbon High Contrast"
 background = "#101213"
 high_contrast = true
 ratio = -0.5

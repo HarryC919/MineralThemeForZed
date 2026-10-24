@@ -29,11 +29,11 @@ const VARIANTS = [
 
 const family = buildFamily();
 const onDisk: ThemeFamily = JSON.parse(
-	readFileSync(path.join(root, 'themes', 'my-dark-theme.json'), 'utf8'),
+	readFileSync(path.join(root, 'themes', 'mineral-theme.json'), 'utf8'),
 );
 const byName = new Map(family.themes.map((t) => [t.name, t]));
 const themeOf = (variant: string, hc = false): NonNullable<ReturnType<typeof byName.get>> => {
-	const name = `My Dark Theme ${variant.charAt(0).toUpperCase()}${variant.slice(1)}${hc ? ' High Contrast' : ''}`;
+	const name = `Mineral Theme ${variant.charAt(0).toUpperCase()}${variant.slice(1)}${hc ? ' High Contrast' : ''}`;
 	const t = byName.get(name);
 	if (!t) throw new Error(`theme not found: ${name}`);
 	return t;
@@ -55,10 +55,10 @@ function expectAllColorsValid(f: ThemeFamily): void {
 describe('family shape', () => {
 	it('has 20 dark themes with correct names', () => {
 		expect(family.themes).toHaveLength(20);
-		expect(family.name).toBe('My Dark Theme');
+		expect(family.name).toBe('Mineral Theme');
 		for (const v of VARIANTS) {
-			expect(byName.has(`My Dark Theme ${v[0]!.toUpperCase()}${v.slice(1)}`)).toBe(true);
-			expect(byName.has(`My Dark Theme ${v[0]!.toUpperCase()}${v.slice(1)} High Contrast`)).toBe(true);
+			expect(byName.has(`Mineral Theme ${v[0]!.toUpperCase()}${v.slice(1)}`)).toBe(true);
+			expect(byName.has(`Mineral Theme ${v[0]!.toUpperCase()}${v.slice(1)} High Contrast`)).toBe(true);
 		}
 		for (const t of family.themes) expect(t.appearance).toBe('dark');
 	});

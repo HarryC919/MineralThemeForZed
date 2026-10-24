@@ -1,9 +1,9 @@
 {
   "author": "Harry",
-  "name": "My Dark Theme",
+  "name": "Mineral Theme",
   "themes": [
     {
-      "name": "My Dark Theme Carbon",
+      "name": "Mineral Theme Carbon",
       "appearance": "dark",
       "style": {
         "background": "#0a0a0a",
@@ -371,7 +371,7 @@
       }
     },
     {
-      "name": "My Dark Theme Carbon High Contrast",
+      "name": "Mineral Theme Carbon High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#101213",
@@ -739,7 +739,7 @@
       }
     },
     {
-      "name": "My Dark Theme Anthracite",
+      "name": "Mineral Theme Anthracite",
       "appearance": "dark",
       "style": {
         "background": "#151719",
@@ -1107,7 +1107,7 @@
       }
     },
     {
-      "name": "My Dark Theme Anthracite High Contrast",
+      "name": "Mineral Theme Anthracite High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#151719",
@@ -1475,7 +1475,7 @@
       }
     },
     {
-      "name": "My Dark Theme Clay",
+      "name": "Mineral Theme Clay",
       "appearance": "dark",
       "style": {
         "background": "#1b1818",
@@ -1843,7 +1843,7 @@
       }
     },
     {
-      "name": "My Dark Theme Clay High Contrast",
+      "name": "Mineral Theme Clay High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#1b1818",
@@ -2211,7 +2211,7 @@
       }
     },
     {
-      "name": "My Dark Theme Deepforest",
+      "name": "Mineral Theme Deepforest",
       "appearance": "dark",
       "style": {
         "background": "#111816",
@@ -2579,7 +2579,7 @@
       }
     },
     {
-      "name": "My Dark Theme Deepforest High Contrast",
+      "name": "Mineral Theme Deepforest High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#111816",
@@ -2947,7 +2947,7 @@
       }
     },
     {
-      "name": "My Dark Theme Graphene",
+      "name": "Mineral Theme Graphene",
       "appearance": "dark",
       "style": {
         "background": "#212121",
@@ -3315,7 +3315,7 @@
       }
     },
     {
-      "name": "My Dark Theme Graphene High Contrast",
+      "name": "Mineral Theme Graphene High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#212121",
@@ -3683,7 +3683,7 @@
       }
     },
     {
-      "name": "My Dark Theme Montana",
+      "name": "Mineral Theme Montana",
       "appearance": "dark",
       "style": {
         "background": "#130f15",
@@ -4051,7 +4051,7 @@
       }
     },
     {
-      "name": "My Dark Theme Montana High Contrast",
+      "name": "Mineral Theme Montana High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#130f15",
@@ -4419,7 +4419,7 @@
       }
     },
     {
-      "name": "My Dark Theme Ocean",
+      "name": "Mineral Theme Ocean",
       "appearance": "dark",
       "style": {
         "background": "#0f111a",
@@ -4787,7 +4787,7 @@
       }
     },
     {
-      "name": "My Dark Theme Ocean High Contrast",
+      "name": "Mineral Theme Ocean High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#0f111a",
@@ -5155,7 +5155,7 @@
       }
     },
     {
-      "name": "My Dark Theme Palenight",
+      "name": "Mineral Theme Palenight",
       "appearance": "dark",
       "style": {
         "background": "#232634",
@@ -5523,7 +5523,7 @@
       }
     },
     {
-      "name": "My Dark Theme Palenight High Contrast",
+      "name": "Mineral Theme Palenight High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#232634",
@@ -5891,7 +5891,7 @@
       }
     },
     {
-      "name": "My Dark Theme Sand",
+      "name": "Mineral Theme Sand",
       "appearance": "dark",
       "style": {
         "background": "#131210",
@@ -6259,7 +6259,7 @@
       }
     },
     {
-      "name": "My Dark Theme Sand High Contrast",
+      "name": "Mineral Theme Sand High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#131210",
@@ -6627,7 +6627,7 @@
       }
     },
     {
-      "name": "My Dark Theme Teal",
+      "name": "Mineral Theme Teal",
       "appearance": "dark",
       "style": {
         "background": "#263238",
@@ -6995,7 +6995,7 @@
       }
     },
     {
-      "name": "My Dark Theme Teal High Contrast",
+      "name": "Mineral Theme Teal High Contrast",
       "appearance": "dark",
       "style": {
         "background": "#263238",

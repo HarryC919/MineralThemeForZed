@@ -1,11 +1,11 @@
-# My Dark Theme for Zed · 开发计划
+# Mineral Theme for Zed · 开发计划
 
 > 前置阅读：`docs/research.md`（本轮调研产出：技术栈、Schema、映射表草案）。背景与决策记录见 `PROGRESS.md`。
 > 状态图例：`[x]` 完成 · `[~]` 进行中 · `[ ]` 未开始
 
 ## 总体思路
 
-`migrate_source/` 的颜色数据模型（13 基色语法模板 × 调色板 × ui-shared/variants/hc-overrides）**原样复用**，新建一条「data/ → Zed Theme Family JSON」的构建管线，替换掉 VS Code 的主题 JSON 格式与 TextMate/运行时机制。产物为一个 theme-only Zed 扩展：`extension.toml` + 生成的 `themes/my-dark-theme.json`（family「My Dark Theme」+ 20 个主题）。
+`migrate_source/` 的颜色数据模型（13 基色语法模板 × 调色板 × ui-shared/variants/hc-overrides）**原样复用**，新建一条「data/ → Zed Theme Family JSON」的构建管线，替换掉 VS Code 的主题 JSON 格式与 TextMate/运行时机制。产物为一个 theme-only Zed 扩展：`extension.toml` + 生成的 `themes/mineral-theme.json`（family「Mineral Theme」+ 20 个主题）。
 
 里程碑顺序刻意让「管线先行、语法映射单变体打样、再铺全量、最后视觉校准」，每步都有机器校验 + 截图对照。
 
@@ -20,12 +20,12 @@
 
 ## M1 扩展骨架与构建管线 `[ ]`
 
-**产出**：可被 Zed 以 dev extension 方式安装的扩展；`My Dark Theme Carbon` 的 UI 部分正确（syntax 先占位用 `primary`/`editor.foreground`）。
+**产出**：可被 Zed 以 dev extension 方式安装的扩展；`Mineral Theme Carbon` 的 UI 部分正确（syntax 先占位用 `primary`/`editor.foreground`）。
 
 1. 目录布局（仓库根即扩展根；Git 已于 2026-10-24 初始化）：
    ```
-   extension.toml            # id: my-dark-theme, schema_version: 1
-   themes/my-dark-theme.json # 构建产物
+   extension.toml            # id: mineral-theme, schema_version: 1
+   themes/mineral-theme.json # 构建产物
    data/                     # vendor 自 migrate_source/data（tokenColors/palettes/semanticTokenColors/ui-shared/variants/hc-overrides/customization）
    scripts/                  # build-themes.ts、lib.ts、映射表 module
    test/                     # vitest
@@ -37,7 +37,7 @@
 5. 校验：ajv 对 Schema v0.2.0、确定性（二次构建 diff 为空）、UI 键映射完备性（每个产出的 Zed UI 键都能溯源到源键或派生规则）。
 6. 本机验证：Extensions 页 `Install Dev Extension` 选仓库根；主题选择器出现 family 并可切换；**实测主题文件改动后的热重载行为**（调研开放问题 1）。
 
-**验收**：Zed 里 `My Dark Theme Carbon` 背景/侧栏/标签栏/状态栏/终端等 UI 观感正确；构建全绿。
+**验收**：Zed 里 `Mineral Theme Carbon` 背景/侧栏/标签栏/状态栏/终端等 UI 观感正确；构建全绿。
 
 ## M2 语法映射打样 `[ ]`
 
@@ -54,7 +54,7 @@
 
 **产出**：family 内 20 个主题全部生成。
 
-1. 全变体跑通（10 × 常规/HC），文件名与主题 name 规范：`My Dark Theme <Variant> [High Contrast]`。
+1. 全变体跑通（10 × 常规/HC），文件名与主题 name 规范：`Mineral Theme <Variant> [High Contrast]`。
 2. 断言测试推广到全变体（palette 应用正确性、HC 覆盖条数与源一致）。
 3. Zed 内逐个切换 20 主题快速走查。
 

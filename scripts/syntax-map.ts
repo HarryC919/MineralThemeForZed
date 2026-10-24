@@ -1,4 +1,4 @@
-// Zed syntax keys -> My Dark Theme palette mapping.
+// Zed syntax keys -> Mineral Theme palette mapping.
 //
 // Zed styles syntax via Tree-sitter capture names (not TextMate scopes), so a
 // 1:1 port of the 81 VS Code rules is impossible. The source template only
