@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="style.xsl"?>
+<!-- XML sample: namespaces, CDATA, entities, attributes -->
+<theme:registry xmlns:theme="https://example.com/theme"
+                xmlns:color="https://example.com/color"
+                version="1.0"
+                generated="2026-10-24T14:00:00Z">
+
+    <theme:metadata>
+        <author>Harry</author>
+        <license type="private">Personal &amp; local use only</license>
+        <count total="20" variants="10" contrast="2" />
+    </theme:metadata>
+
+    <theme:family name="My Dark Theme" accent="#5393FF">
+        <description>Dark theme family with 10 background variants &mdash; ported from VS Code.</description>
+        <theme:variant name="carbon" contrast="false">
+            <color:background>#0A0A0A</color:background>
+            <color:foreground>#D9D9D9</color:foreground>
+            <color:accent rgb="83, 147, 255" alpha="1.0">Blue</color:accent>
+            <color:syntax tokens="13">
+                <token name="string" value="#C3E88D" italic="false" />
+                <token name="keyword" value="#89DDFF" italic="true" />
+                <token name="comment" value="#546E7A" italic="true"><![CDATA[
+                    // raw syntax: if (x < 10) { y = x > 2 && z != null; }
+                    <not-a-tag /> &amp; &lt;entities&gt; preserved
+                ]]></token>
+            </color:syntax>
+        </theme:variant>
+
+        <theme:variant name="teal" contrast="true">
+            <color:background>#263238</color:background>
+            <color:foreground>#D8DFDF</color:foreground>
+        </theme:variant>
+    </theme:family>
+
+    <theme:overrides>
+        <override selector="tab.activeBorder" value="#5393FF00" enabled='true' />
+        <override selector="editor.background" value="&#x30;&#x41;&#x30;&#x41;&#x30;&#x41;" />
+    </theme:overrides>
+
+    <empty />
+    <self-closing data-value="42" flag='yes' />
+</theme:registry>

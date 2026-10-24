@@ -1,0 +1,54 @@
+{
+	"$schema": "https://zed.dev/schema/themes/v0.2.0.json",
+	"author": "Harry",
+	"name": "My Dark Theme",
+	"version": 1,
+	"enabled": true,
+	"disabled": false,
+	"accent": null,
+	"ratio": 1.6180339887,
+	"negative": -0.5,
+	"exponent": 2.5e-4,
+	"hexLike": 0.101010,
+	"large": 4294967295,
+	"themes": [
+		{
+			"name": "My Dark Theme Carbon",
+			"appearance": "dark",
+			"highContrast": false,
+			"colors": {
+				"editor.background": "#0A0A0A",
+				"editor.foreground": "#D9D9D9",
+				"terminal.ansi.blue": "#6A90D0"
+			},
+			"syntax": {
+				"string": { "color": "#C3E88D" },
+				"keyword": {
+					"color": "#89DDFF",
+					"font_style": "italic",
+					"font_weight": 500
+				}
+			}
+		},
+		{
+			"name": "My Dark Theme Teal",
+			"appearance": "dark",
+			"highContrast": true,
+			"escapes": "line1\nline2\t\"quoted\"\u4e2d\u6587\\backslash\/slash",
+			"unicode": "emoji \u{1F600} reserved",
+			"empty": [],
+			"nested": {
+				"deep": {
+					"deeper": [
+						{
+							"leaf": true,
+							"count": 0,
+							"tags": ["a", "b", "c"],
+							"matrix": [[1, 2], [3, 4]]
+						}
+					]
+				}
+			}
+		}
+	]
+}

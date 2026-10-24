@@ -95,6 +95,7 @@ export const SYNTAX_MAP: Record<string, SyntaxEntry> = {
 
 	// Markup / CSS / misc
 	title: { color: CYAN },
+	'markup.quote': { color: CYAN, font_style: 'italic' },
 	selector: { color: YELLOW },
 	'selector.pseudo': { color: PURPLE },
 	emphasis: { color: RED, font_style: 'italic' },

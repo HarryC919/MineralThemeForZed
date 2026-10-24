@@ -1,0 +1,60 @@
+# YAML sample: anchors, aliases, multiline, implicit types
+---
+schema_version: 1
+name: My Dark Theme
+enabled: true
+disabled: false
+ratio: 1.618
+hex_mask: 0x1F90
+octal: 0o755
+version: "1.0"          # string, not number
+count: 20
+nothing: null
+also_null: ~
+tilde_key: yes
+created: 2026-10-24
+timestamp: 2026-10-24T14:00:00Z
+
+owner: &owner
+  name: Harry
+  role: admin
+
+defaults: &defaults
+  appearance: dark
+  high_contrast: false
+  colors:
+    editor.background: "#0A0A0A"
+    editor.foreground: "#D9D9D9"
+
+themes:
+  - <<: *defaults
+    name: carbon
+    owner: *owner
+    accent: "#5393FF"
+  - <<: *defaults
+    name: teal
+    high_contrast: true
+    colors:
+      editor.background: "#263238"
+
+nested:
+  list:
+    - item one
+    - - nested item
+      - another
+    - { inline: map, count: 2 }
+  quoted: "with \"escapes\" and \t tab"
+  single: 'raw \n stays'
+  folded: >
+    folded text
+    joins lines
+
+  literal: |
+    line one
+      indented two
+multi_doc: |
+  doc one
+
+---
+name: second document
+enabled: false

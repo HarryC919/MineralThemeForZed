@@ -1,0 +1,92 @@
+/* CSS sample: selectors, at-rules, variables, functions, nesting */
+@import url("theme.css") layer(base);
+@charset "UTF-8";
+
+:root {
+  --accent: #5393ff;
+  --bg-canvas: #0a0a0a;
+  --fg-primary: #d9d9d9;
+  --spacing: 8px;
+  --ratio: 1.618;
+}
+
+/* element selector */
+body {
+  margin: 0;
+  background-color: var(--bg-canvas);
+  color: var(--fg-primary);
+  font-family: "Fira Code", "JetBrains Mono", monospace;
+  font-size: calc(14px * var(--ratio));
+  line-height: 1.6;
+}
+
+/* class, id, attribute selectors */
+.theme-dark .panel,
+#sidebar {
+  background: linear-gradient(180deg, #161718 0%, rgb(10 10 10 / 85%) 100%);
+  border: 1px solid #ffffff24;
+  border-radius: 6px 6px 0 0;
+}
+
+a[href^="https://"][data-external]:not(.internal) {
+  color: var(--accent);
+  text-decoration: underline wavy;
+}
+
+/* pseudo classes and elements */
+li:nth-child(2n + 1):hover > a::before {
+  content: "\2192 ";
+  opacity: 0.75;
+}
+
+input:focus-visible,
+textarea:active {
+  outline: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 48rem) {
+  .panel {
+    animation: slide-in 250ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transition: background-color 150ms ease-in-out, border-color 120ms;
+  }
+}
+
+@supports (display: grid) {
+  .layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: calc(var(--spacing) * 2);
+  }
+}
+
+@layer components {
+  .card > .header + .body ~ .footer {
+    padding: calc(var(--spacing) * 1.5) clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .card:hover .title {
+    color: color-mix(in oklab, var(--accent), white 20%);
+  }
+}
+
+.nested {
+  & .child {
+    background: hsl(215 90% 60% / 20%);
+
+    &:hover {
+      background: hsl(215 90% 60% / 35%);
+    }
+  }
+}

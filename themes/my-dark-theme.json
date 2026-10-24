@@ -275,6 +275,10 @@
           "title": {
             "color": "#6ebad7"
           },
+          "markup.quote": {
+            "color": "#6ebad7",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#d5b05f"
           },
@@ -638,6 +642,10 @@
           },
           "title": {
             "color": "#6ebad7"
+          },
+          "markup.quote": {
+            "color": "#6ebad7",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#d5b05f"
@@ -1003,6 +1011,10 @@
           "title": {
             "color": "#89ddff"
           },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -1366,6 +1378,10 @@
           },
           "title": {
             "color": "#89ddff"
+          },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"
@@ -1731,6 +1747,10 @@
           "title": {
             "color": "#89ddff"
           },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -2094,6 +2114,10 @@
           },
           "title": {
             "color": "#89ddff"
+          },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"
@@ -2459,6 +2483,10 @@
           "title": {
             "color": "#74c9de"
           },
+          "markup.quote": {
+            "color": "#74c9de",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -2822,6 +2850,10 @@
           },
           "title": {
             "color": "#74c9de"
+          },
+          "markup.quote": {
+            "color": "#74c9de",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"
@@ -3187,6 +3219,10 @@
           "title": {
             "color": "#89ddff"
           },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -3550,6 +3586,10 @@
           },
           "title": {
             "color": "#89ddff"
+          },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"
@@ -3915,6 +3955,10 @@
           "title": {
             "color": "#89ddff"
           },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -4278,6 +4322,10 @@
           },
           "title": {
             "color": "#89ddff"
+          },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"
@@ -4643,6 +4691,10 @@
           "title": {
             "color": "#89ddff"
           },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -5006,6 +5058,10 @@
           },
           "title": {
             "color": "#89ddff"
+          },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"
@@ -5371,6 +5427,10 @@
           "title": {
             "color": "#89ddff"
           },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -5734,6 +5794,10 @@
           },
           "title": {
             "color": "#89ddff"
+          },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"
@@ -6099,6 +6163,10 @@
           "title": {
             "color": "#89ddff"
           },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -6462,6 +6530,10 @@
           },
           "title": {
             "color": "#89ddff"
+          },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"
@@ -6827,6 +6899,10 @@
           "title": {
             "color": "#89ddff"
           },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
+          },
           "selector": {
             "color": "#ffcb6b"
           },
@@ -7190,6 +7266,10 @@
           },
           "title": {
             "color": "#89ddff"
+          },
+          "markup.quote": {
+            "color": "#89ddff",
+            "font_style": "italic"
           },
           "selector": {
             "color": "#ffcb6b"

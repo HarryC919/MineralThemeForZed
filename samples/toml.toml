@@ -1,0 +1,63 @@
+# TOML sample: tables, inline tables, arrays, dates, multi-line strings
+schema_version = 1
+title = "My Dark Theme for Zed"
+enabled = true
+disabled = false
+ratio = 1.618
+hex = 0xDEADBEEF
+octal = 0o755
+binary = 0b1010_1010
+exponent = 2.5e-4
+negative = -17
+infinity = inf
+not_a_number = nan
+created = 2026-10-24T14:00:00Z
+local_date = 2026-10-24
+local_time = 14:00:00.999
+
+[owner]
+name = "Harry"
+since = 2026-10-24
+tags = ["owner", "admin"]
+
+[theme]
+family = "My Dark Theme"
+accent = "#5393FF"              # baked accent
+"quoted key" = "supports spaces"
+literal = 'C:\path\no\escapes'
+multi = """
+line one
+line "two" with \t escape
+"""
+literal_multi = '''
+raw \n stays
+'''
+
+[[themes]]
+name = "My Dark Theme Carbon"
+background = "#0A0A0A"
+high_contrast = false
+ratio = 1.618
+
+[[themes]]
+name = "My Dark Theme Carbon High Contrast"
+background = "#101213"
+high_contrast = true
+ratio = -0.5
+
+[themes.syntax]
+string = "#C3E88D"
+keyword = { color = "#89DDFF", italic = true }
+numbers = [1, 2, 3]
+mixed = [
+	{ name = "a", value = 0x1F },
+	{ name = "b", value = 2.5 },
+]
+
+[servers.alpha]
+ip = "10.0.0.1"
+port = 8_443
+
+[servers.beta]
+ip = "10.0.0.2"
+port = 0x1F90

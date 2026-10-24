@@ -19,6 +19,14 @@
 
 ## 已完成工作
 
+### 2026-10-24 · 渲染对比（samples 语料库 + 三层验证）
+
+- **语料库**：`samples/` 24 文件覆盖 C/C++/Rust/Zig/Java/C#/Go/Scala/Kotlin/Python/JS/TS/CSS/Ruby/PHP/SQL/XML/HTML/JSON/TOML/YAML/Markdown/Shell/Swift，每文件刻意覆盖声明/控制/修饰符关键字、函数/类型/属性、字符串转义/模板、注释三态、数字进制、装饰器/宏/预处理器等。
+- **方法**：CLI 打开同目录 → computer use 截图（VS Code a11y 点击文件树 / Zed cmd+P，Zed 侧装齐 11 个语法扩展）→ 全帧拼接 → 2x 放大 → 像素采样 + VS Code Token Inspector 裁决。**教训**：1x 截图目测色相不可靠；Inspector 弹窗需光标在 token 内。
+- **确认**（详见 docs/rendering-comparison.md）：Zig/Scala 在 VS Code 无 grammar（不可比）；**Zed 斜体实际会渲染**（修正上轮字体结论——合成倾斜生效，用户报的 import 无斜体是映射键缺失）；Rust `pub` VS=Storage 紫（Inspector）vs Zed 青（语法桶限制，不可修）；`//!` 内层文档注释 VS 暖红 vs Zed 灰（无 capture，不可分）；LSP 语义色层不迁移（策略）。
+- **修复**：`markup.quote` ← 青斜体（Markdown 区块引用）。36 项测试全绿。
+- **待用户复验 7 项**（markdown 粗斜体、JSON 键、Go 常量、Java 关键字桶、C# using、Rust 数字、C 结构体——复验步骤在文档第二节）。
+
 ### 2026-10-24 · 验收反馈第 2 轮（斜体排查 + 边框二调）
 
 - **斜体仍不显示 → 定位为字体问题，非主题问题**：证据链（a）主题产物确含 `font_style: italic`（keyword.import/comment/namespace 等）；（b）Zed 官方 One 主题使用同一字段（机制可用）；（c）用户 buffer 字体 `FiraCode Nerd Font Mono` 经字体清单证实全家族无斜体字形（仅 Light/Reg/Med/SemBd/Bold/Ret）；（d）VS Code 的 Chromium 渲染器会合成假斜体而 Zed/GPUI 不会 → 同一字体在 VS Code 有斜体、在 Zed 没有。**解法在用户侧**：换带真斜体的等宽字体（JetBrainsMono NF 最接近 FiraCode 观感；备选 Cascadia Code NF / Maple Mono NF / Iosevka / Victor Mono）。research.md 已记录该前置条件。

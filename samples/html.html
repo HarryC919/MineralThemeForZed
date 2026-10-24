@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'" />
+    <title>My Dark Theme &mdash; 渲染示例</title>
+    <link rel="stylesheet" href="/styles/theme.css" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg/%3E" />
+    <script type="module" src="/scripts/app.js" defer></script>
+    <style>
+        :root { --accent: #5393FF; }
+        .banner { color: var(--accent); font-size: 1.25rem; }
+    </style>
+</head>
+<body class="theme-dark" id="top">
+    <!-- Header section -->
+    <header class="site-header" role="banner">
+        <h1>My&nbsp;Dark <em>Theme</em> <strong>Registry</strong></h1>
+        <nav aria-label="主导航">
+            <ul>
+                <li><a href="#themes" title="主题列表">主题</a></li>
+                <li><a href="https://example.com/docs" target="_blank" rel="noopener">文档</a></li>
+                <li><a href="mailto:hello@example.com">联系</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article id="themes" data-count="20">
+            <h2>主题变体 &amp; 说明</h2>
+            <p>
+                共 <b>10</b> 个背景变体，覆盖 <i>Carbon</i>、<code>#0A0A0A</code> 等；
+                支持 <mark>High&nbsp;Contrast</mark> 档位。
+                语法色板含 <kbd>keyword</kbd>、<samp>string</samp>、<var>variable</var>、
+                <abbr title="Tree-sitter">TS</abbr> 捕获等 &lt;tags&gt; 与 &quot;entities&quot;。
+            </p>
+            <blockquote cite="https://example.com/quote">
+                配色基于开源 Material 色板。<br />
+                &copy; 2026 &mdash; &#x4E2A;&#x4EBA;&#x4F7F;&#x7528;
+            </blockquote>
+            <figure>
+                <img src="/img/preview.webp" alt="主题预览" width="640" height="360" loading="lazy" />
+                <figcaption>Carbon 变体预览</figcaption>
+            </figure>
+            <table>
+                <thead><tr><th>变体</th><th scope="col">背景</th></tr></thead>
+                <tbody>
+                    <tr><td>Carbon</td><td><span class="swatch" style="background:#0A0A0A"></span></td></tr>
+                    <tr><td>Teal</td><td><span class="swatch" style="background:#263238"></span></td></tr>
+                </tbody>
+            </table>
+            <pre><code class="language-ts">const accent: string = "#5393FF";</code></pre>
+            <form action="/submit" method="post" enctype="multipart/form-data">
+                <label for="variant">变体:</label>
+                <select id="variant" name="variant" required>
+                    <option value="carbon" selected>Carbon</option>
+                    <option value="teal">Teal</option>
+                </select>
+                <input type="checkbox" name="contrast" value="true" />
+                <button type="submit" disabled>提交</button>
+            </form>
+        </article>
+    </main>
+
+    <footer>
+        <p><small>&copy; 2026 Personal Use</small></p>
+    </footer>
+</body>
+</html>
