@@ -202,3 +202,27 @@ describe('fonts', () => {
 		expect(syntax['emphasis.strong']!.font_weight).toBe(700);
 	});
 });
+
+describe('Zed TS grammar ground truth (2026-10-24 feedback)', () => {
+	it('styles const/type keywords purple via keyword.declaration', () => {
+		const t = themeOf('teal');
+		const syntax = t.style.syntax as Record<string, { color: string; font_style?: string }>;
+		expect(syntax['keyword.declaration']!.color).toBe(formatHex(parseHex('#C792EA')));
+	});
+
+	it('styles import/export/from cyan italic via keyword.import', () => {
+		const t = themeOf('teal');
+		const syntax = t.style.syntax as Record<string, { color: string; font_style?: string }>;
+		expect(syntax['keyword.import']!.color).toBe(formatHex(parseHex('#89DDFF')));
+		expect(syntax['keyword.import']!.font_style).toBe('italic');
+	});
+
+	it('brightens hairline borders above the VS Code source alphas', () => {
+		// carbon's editorGroup.border base is #d9d9d9; other variants derive their
+		// hairlines from their own foreground family (e.g. teal #d8dfdf).
+		const t = themeOf('carbon');
+		expect(t.style['border']).toBe('#ffffff24');
+		expect(t.style['border.variant']).toBe('#d9d9d91f');
+		expect(t.style['pane_group.border']).toBe('#d9d9d91f');
+	});
+});

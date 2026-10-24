@@ -8,7 +8,7 @@
 		"build": "tsx scripts/build-themes.ts",
 		"typecheck": "tsc --noEmit",
 		"test": "vitest run",
-		"verify": "npm run typecheck && npm test && npm run build"
+		"verify": "npm run typecheck && npm run build && npm test"
 	},
 	"devDependencies": {
 		"@types/node": "^24.0.0",

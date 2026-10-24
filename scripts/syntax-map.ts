@@ -61,6 +61,11 @@ export const SYNTAX_MAP: Record<string, SyntaxEntry> = {
 	// Keywords & operators
 	keyword: { color: CYAN },
 	'keyword.control': { color: CYAN, font_style: 'italic' },
+	// Zed's TS grammar captures const/let/var/function/class/enum/interface/type
+	// as @keyword.declaration and import/export/from as @keyword.import (the
+	// latter matches VS Code's keyword.control.import prefix rule -> cyan italic).
+	'keyword.declaration': { color: PURPLE },
+	'keyword.import': { color: CYAN, font_style: 'italic' },
 	'keyword.function': { color: PURPLE },
 	'keyword.modifier': { color: PURPLE },
 	'keyword.type': { color: PURPLE },

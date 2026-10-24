@@ -72,15 +72,17 @@ export function buildUiStyle(colors: Record<string, string>, opts: UiMapOptions)
 		'editor.document_highlight.bracket_background': withAlpha(base('editorBracketMatch.border'), 0.2),
 		'editor.subheader.background': bg,
 
-		// Borders (Vira flat look: hairlines over saturated focus rings)
-		border: c('widget.border'),
-		'border.variant': c('editorGroup.border'),
+		// Borders (Vira flat look: hairlines over saturated focus rings).
+		// Hairline alphas are calibrated brighter than the VS Code source values
+		// (6% white) because Zed draws fewer, thinner borders — 2026-10-24 user feedback.
+		border: withAlpha(base('widget.border'), 0.14),
+		'border.variant': withAlpha(base('editorGroup.border'), 0.12),
 		'border.focused': c('focusBorder'),
 		'border.selected': c('inputOption.activeBorder'),
 		'border.disabled': withAlpha(fg, 0.1),
 		'border.transparent': '#00000000',
 		'pane.focused_border': c('focusBorder'),
-		'pane_group.border': c('editorGroup.border'),
+		'pane_group.border': withAlpha(base('editorGroup.border'), 0.12),
 		'panel.focused_border': c('panel.border'),
 
 		// Text

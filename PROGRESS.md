@@ -19,6 +19,12 @@
 
 ## 已完成工作
 
+### 2026-10-24 · 验收反馈第 1 轮（TS 关键字 + 边框）
+
+- **用户报告**：TS 中 `import` 无斜体；`const`/`type` 非紫色；边框偏暗。
+- **取证**：Zed 把语法查询编译进二进制（应用包/资源目录均无 .scm）；经 git 历史定位 `crates/languages/src/typescript/highlights.scm`（commit `a75b8c8`）：TS 语法**有** `@keyword.declaration`（const/let/var/function/class/enum/interface/type）与 `@keyword.import`（import/export/from）捕获，首轮映射漏配这两个键——是映射缺口而非 Zed 不能区分。
+- **修复**：`syntax-map.ts` 新增 `keyword.declaration` ← 紫、`keyword.import` ← 青斜体；`ui-map.ts` 发丝线族调亮（`border` 白 @0.14、`border.variant`/`pane_group.border` @0.12）。测试 +3（36 项全绿）；`npm run verify` 顺序改为 typecheck → build → test（测试校验磁盘产物新鲜度，build 必须先行）。
+
 ### 2026-10-24 · M1–M5 构建执行（v0.1.0）
 
 - **工程**：TypeScript(strict)+tsx+vitest+ajv，无 Rust。仓库根即扩展根：`extension.toml`（id `my-dark-theme`，schema_version 1）、`data/`（vendor 源项目 6 个颜色文件 + variants/）、`scripts/{lib,ui-map,syntax-map,build-themes}.ts`、`test/build.test.ts`（33 项）、`vitest.config.ts`（限定 test/，防误扫 migrate_source）、`.github/workflows/ci.yml`（含确定性检查 `git diff --exit-code -- themes/`）。
