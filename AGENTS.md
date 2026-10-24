@@ -46,7 +46,7 @@
 - **生成优先**：`themes/` 下的产物一律由 `npm run build` 生成，禁止手工编辑；改色 → 改 `data/` 或映射表 → 重新构建。
 - **映射表是代码**：UI 键映射（research.md §5.1）与 syntax 键映射（§5.2）以 `scripts/ui-map.ts` / `scripts/syntax-map.ts` 为准并保持文档同步；每个 Zed 键必须能溯源到源键或显式派生规则（测试强制）。
 - **颜色格式**：沿用源项目风格——小写 hex、8 位表示 alpha（如 `#0000004d`）；Zed 原生支持 `#RRGGBBAA`。
-- **命名**：扩展 id `mineral-theme`（满足发布前提：theme 结尾、kebab-case、不含 zed/extension 字样）；family 名 `Mineral Theme`；主题 name `Mineral Theme <Variant> [High Contrast]`；产物文件 `themes/mineral-theme.json`（单文件单 family，不拆分）。
+- **命名**：扩展 name `Mineral Themes`（市场展示名，id 保持单数 `mineral-theme`，满足发布前提：theme 结尾、kebab-case、不含 zed/extension 字样）；family 名 `Mineral Theme`；主题 name `Mineral Theme <Variant> [High Contrast]`；产物文件 `themes/mineral-theme.json`（单文件单 family，不拆分）。
 - **accent 策略**：烘焙 **Blue `#5393FF`**（2026-10-24 用户拍板；等价 VS Code 版出厂基线）。换色两条路：构建参数 `npx tsx scripts/build-themes.ts --accent=<name|#hex>` 整体重烘焙，或用户侧 `theme_overrides`（受影响键仅 4–6 个，见 research.md §5.3）。
 - **语言**：代码与 commit message 用英文（conventional commits：`feat:`/`fix:`/`chore:`/`docs:`…）；讨论与文档用中文。
 - **文档同步**：每完成一个可交付单元立即更新 `PROGRESS.md`；映射表定稿后回写 `docs/research.md`。

@@ -1,4 +1,4 @@
-# Mineral Theme for Zed
+# Mineral Themes for Zed
 
 A dark theme family for [Zed](https://zed.dev) with **10 background variants**, each shipped in a normal and a high-contrast flavor — **20 themes** in a single family. Syntax colors are built on the classic open Material palette, with per-variant desaturation, per-variant terminal ANSI colors, and an accent that stays consistent across every surface.
 

@@ -1,4 +1,4 @@
-# Mineral Theme for Zed（中文说明）
+# Mineral Themes for Zed（中文说明）
 
 > 英文版 [README.md](README.md) 为正式版，本文件为中文对照；两者内容保持同步。
 
