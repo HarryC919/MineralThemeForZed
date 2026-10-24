@@ -1,15 +1,21 @@
-Mineral Theme for Zed
-Copyright (c) 2026 the project owner
+MIT License
 
-PRIVATE / PERSONAL USE ONLY.
+Copyright (c) 2026 HarryC919
 
-This theme extension is for the owner's local, personal use in Zed via
-a dev extension and a private repository. It must NOT be distributed
-or published to the Zed extension registry unless the project owner
-explicitly decides to do so (publishing would additionally require
-relicensing under an accepted open-source license such as MIT).
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Color values are derived from the owner's own VS Code theme data
-(data/), which in turn builds on the open Material color palette.
-No third-party code or binary assets are included; the JSON theme
-output is generated entirely by scripts/ in this repository.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

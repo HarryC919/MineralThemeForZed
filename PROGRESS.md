@@ -100,11 +100,12 @@
 | 2026-10-24 | **暂不公开发布**，待法律/合规风险评估后再决策 | 用户要求；风险摘要：配色值不受版权保护、未复制 Vira 闭源代码/图标字体/文案资产、命名与商标无冲突；若发布需另过 registry 自查（查重、license、文案原创） |
 | 2026-10-24 | Accent 方案：A（MVP 烘焙原生 teal）先行；C（`theme_overrides` 用户侧覆盖片段）满足日常换色；B（accent 变体主题）可选追加 | Zed 主题为静态 JSON 无运行时；accent 受影响 token 仅 4–6 个，B 的"每变体 20 个新主题"性价比低；A→B 可无缝升级（构建已参数化空间） |
 | 2026-10-24 | **Accent 修订：A 方案落定，但烘焙色改为 Blue `#5393FF`**（非原生 teal） | 用户拍板：Vira 原生 teal 太轻，Blue 观感更好；等价于 VS Code 版出厂 Blue 基线（v0.5.2）。C（theme_overrides）记为未来可能的变更手段 |
-
 | 2026-10-24 | 注释前缀着色能力将由用户**另立独立插件项目**实现，不在本项目范围 | 用户决策 |
 | 2026-10-24 | **扩展更名 Mineral Theme**（id `mineral-theme`，family/主题名/产物文件/CI 产物/双语 README/LICENSE/样例语料同步更名；产物文件 themes/my-dark-theme.json → themes/mineral-theme.json） | 用户从矿物系候选（Mineral/Basalt/Stratum/Terrane/Lithic）中选定 Mineral——与 10 个地质系变体名（Carbon/Graphene/Clay…）谱系一致；VS Code 版项目名保留 My Dark Theme 不变 |
+| 2026-10-24 | 市场显示名定为复数 **Mineral Themes**（id 保持单数 `mineral-theme`） | 用户观察 registry 惯例；id 侧官方示例与 468:23 的统计均为单数，家族/主题名单数 |
+| 2026-10-24 | **发布准备完成**：LICENSE 换 MIT（HarryC919）、extension.toml 补 repository 字段、作者署名改 HarryC919；仓库已由用户公开推送（github.com/HarryC919/MineralThemeForZed）；剩余 = 用户向 zed-industries/extensions 提 PR（fork → submodule → extensions.toml 条目） | 用户决定上架并已自行 push |
 
 ## 待办 / 已知问题
 
-- [ ] 用户风险评审后决定是否公开发布（发布前需：公开仓库 + 换 MIT 等 license + 补 repository 字段 + 评估 registry 查重）
+- [ ] 用户向 `zed-industries/extensions` 提 PR 上架（fork → `git submodule add` → extensions.toml 条目 → `pnpm sort-extensions` → PR；规则：单 PR 单扩展、≤3 开放 PR、3 周内响应 review）
 - [ ] 数据同步：`migrate_source/data` 改色后手动重新 vendor 到 `data/`（6 文件 + variants/；`semanticTokenColors.json` 仅存档，Zed 不使用）

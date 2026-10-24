@@ -101,7 +101,7 @@ npm test          # 仅测试
 
 ## 发布
 
-本扩展计划上架 [Zed 扩展市场](https://zed.dev/extensions)。设计上已满足发布前提：theme-only（无 Rust）、合规 id（`mineral-theme`）、英文描述、单一生成主题文件。剩余步骤见 [PROGRESS.md](PROGRESS.md)：公开仓库、MIT license、`extension.toml` 补 `repository` 字段，然后向 `zed-industries/extensions` 提 PR（git submodule + `extensions.toml` 条目）。
+仓库已公开且满足 [registry 前提](https://zed.dev/docs/extensions/publishing/prerequisites)：theme-only（无 Rust）、合规 id（`mineral-theme`）、MIT license、`repository` 字段、英文描述、单一生成主题文件。剩余步骤是向 [`zed-industries/extensions`](https://github.com/zed-industries/extensions) 提 PR：fork → `git submodule add https://github.com/HarryC919/MineralThemeForZed.git extensions/mineral-theme` → 在 `extensions.toml` 追加 `[mineral-theme]` 条目 → `pnpm sort-extensions` → 开 PR。
 
 ## 开发 Agent
 
@@ -114,4 +114,4 @@ npm test          # 仅测试
 
 ## License
 
-本仓库目前私有、仅限个人使用。上架扩展市场时将以 **MIT License** 发布（registry 的硬性要求）；当前见 [LICENSE.txt](LICENSE.txt)。
+以 [MIT License](LICENSE.txt) 发布。

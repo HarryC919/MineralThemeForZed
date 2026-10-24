@@ -99,7 +99,7 @@ The build is deterministic (byte-identical output for identical input) and valid
 
 ## Publishing
 
-This extension is intended for the [Zed extension registry](https://zed.dev/extensions). Publishing requirements are already accounted for in the design: theme-only extension (no Rust), registry-friendly id (`mineral-theme`), English description, and a single generated theme file. The remaining steps live in [PROGRESS.md](PROGRESS.md): public repository, MIT license, `repository` field in `extension.toml`, then a PR to `zed-industries/extensions` (git submodule + `extensions.toml` entry).
+The repository is public and meets the [registry prerequisites](https://zed.dev/docs/extensions/publishing/prerequisites): theme-only extension (no Rust), registry-friendly id (`mineral-theme`), MIT license, `repository` field set, English description, and a single generated theme file. The remaining step is a PR to [`zed-industries/extensions`](https://github.com/zed-industries/extensions): fork → `git submodule add https://github.com/HarryC919/MineralThemeForZed.git extensions/mineral-theme` → add the `[mineral-theme]` entry to `extensions.toml` → `pnpm sort-extensions` → open the PR.
 
 ## Development Agent
 
@@ -112,6 +112,6 @@ This extension was built end-to-end with the **ZCode** coding agent, powered by 
 
 ## License
 
-This repository is currently private and for personal use. It will be released under the **MIT License** when published to the extension registry (a registry requirement); see [LICENSE.txt](LICENSE.txt) in the meantime.
+Released under the [MIT License](LICENSE.txt).
 
 中文说明见 [README_zh.md](README_zh.md)。
