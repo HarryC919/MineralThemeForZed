@@ -22,7 +22,8 @@
 ### 2026-10-24 · README 双语化（面向公众）+ CI 打包产物
 
 - **README 重构**：中文原版另存 `README_zh.md`（与英文版同步的对照版）；新写面向公众的英文 `README.md`——含预览图（`docs/images/preview-carbon.png`，Zed 实截 JetBrains Mono + 新边框）、主题表、设计要点、安装（CI 下载包 / dev extension 两种路径）、accent 覆盖、开发指南、发布前置说明、致谢与 License（私有现状 + 发布时转 MIT）。
-- **CI 打包**：ci.yml 新增 `Package extension bundle` 步骤——校验通过后将 `extension.toml + themes/ + LICENSE + README` 打成 `my-dark-theme-zed-<version>.zip` 并以 `actions/upload-artifact` 附到 run（版本号从 extension.toml 提取）。**注意：Zed 无 vsix 式侧载格式，zip 需解压后以 Install Dev Extension 加载**；真正上架走 zed-industries/extensions PR（README 发布节已说明）。
+- **CI 打包**：ci.yml 新增 `Package extension bundle` 步骤——校验通过后将 `extension.toml + themes/ + LICENSE + README` 打成 `mineral-theme-<version>.zip` 并以 `actions/upload-artifact` 附到 run（版本号从 extension.toml 提取）。**注意：Zed 无 vsix 式侧载格式，zip 需解压后以 Install Dev Extension 加载**；真正上架走 zed-industries/extensions PR（README 发布节已说明）。
+- **Release 工作流（后补）**：release.yml——push `v*` tag 触发 verify + tag/extension.toml 版本一致性校验 + 打包 `mineral-theme-<version>.zip` + `softprops/action-gh-release` 创建 GitHub Release 附 zip（Releases 页公开下载、无需登录；Actions artifacts 匿名不可下载）。README 安装节改为指向 Releases 页。
 - 预览图取自本机 Zed 实截（rust.rs + samples 文件树，裁掉 AI 面板与状态栏）。
 
 ### 2026-10-24 · 渲染对比第二轮（用户澄清 + Zig/Scala 补比）
