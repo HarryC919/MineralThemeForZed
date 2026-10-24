@@ -1,29 +1,58 @@
 # My Dark Theme for Zed
 
-为 Zed 复刻的暗色主题扩展，移植自 VS Code 版 [My Dark Theme](./migrate_source)（视觉对标 Vira Theme，基于开源 Material 色板衍生配色）。
+A dark theme family for [Zed](https://zed.dev) with **10 carefully tuned background variants**, each shipped in a normal and a high-contrast flavor — **20 themes** in a single family. Syntax colors are built on the classic open Material palette, with per-variant desaturation, per-variant terminal ANSI colors, and an accent that stays consistent across every surface.
 
-**仅个人使用**：通过 dev extension 装入本地 Zed；私有仓库，暂不发布（LICENSE 与发布前置条件见 `LICENSE.txt` / `docs/research.md`）。
+![My Dark Theme Carbon preview](docs/images/preview-carbon.png)
 
-## 内容
+## Themes
 
-- **20 个颜色主题**：10 个背景变体（Carbon / Anthracite / Clay / Deepforest / Graphene / Montana / Ocean / Palenight / Sand / Teal）× 常规 + High Contrast，单 family「My Dark Theme」。
-- **Accent 已烘焙为 Blue `#5393FF`**（等价 VS Code 版默认 accent）。Zed 主题是静态 JSON、无运行时，因此不做动态换色；想临时换 accent 可用 `theme_overrides`（见下）。
-- 编辑器语法色按「13 基色 × 各变体调色板」生成（与 VS Code 版同一套数据），UI 色与终端 ANSI 逐键映射——映射表与取舍见 `docs/research.md`。
+| Variant | Editor background | Variant | Editor background |
+|---|---|---|---|
+| Carbon | `#0A0A0A` | Ocean | `#0F111A` |
+| Anthracite | `#151719` | Palenight | `#232634` |
+| Clay | `#1B1818` | Sand | `#131210` |
+| Deepforest | `#111816` | Teal | `#263238` |
+| Graphene | `#212121` | Montana | `#130F15` |
 
-## 本地安装（dev extension）
+Every variant also has a **High Contrast** edition (e.g. *My Dark Theme Carbon High Contrast*) with lifted editor backgrounds and contrast-tuned UI colors. Themes appear in the picker as one family: **My Dark Theme**.
+
+## Design notes
+
+- **Syntax highlighting is mapped per Tree-sitter capture**, not per TextMate scope: declaration keywords (purple), control flow (cyan italic), types (yellow), functions (blue), properties/members (red), strings (green), numbers (orange), comments (gray italic).
+- **Italic support** for comments, doc comments, control keywords, imports and markup — use a font with real italics (e.g. JetBrains Mono) for the intended look.
+- **The accent is baked in as blue `#5393FF`** and drives `text.accent`, `icon.accent`, links, active-element tints and the active search match. It is a static theme — Zed themes have no runtime — so the accent can be changed per theme via Zed's `theme_overrides` (below) or at build time.
+- Terminal colors are a full per-variant ANSI palette (normal / bright / synthesized dim rows).
+- UI colors were translated key-by-key from the VS Code original (~140 Zed style keys, coverage-tested), including git decorations, diff highlights, scrollbar, search matches and editor document highlights.
+
+## Installation
+
+### From a downloaded bundle (CI artifact)
+
+Every CI run attaches a ready-to-use bundle (`extension.toml` + generated `themes/`):
+
+1. Download the `my-dark-theme-zed-<version>.zip` artifact from the latest CI run.
+2. Unzip it anywhere.
+3. In Zed: open the Extensions page (`zed: extensions`) → **Install Dev Extension** → select the unzipped folder.
+4. Open the theme selector (`cmd-k cmd-t` / `ctrl-k ctrl-t`) and pick a variant.
+
+> Note: Zed has no side-loadable package format (no vsix equivalent) — extensions are either loaded as dev extensions from a directory or installed from the [extension registry](https://zed.dev/extensions). The CI bundle is exactly that directory, zipped.
+
+### As a dev extension (from source)
 
 ```bash
-npm install && npm run build   # 生成 themes/my-dark-theme.json
-open -a Zed .                  # 或在 Zed 里：命令面板 → zed: open
+git clone <this repository>
+cd MyDarkThemeForZed
+npm install
+npm run build        # generates themes/my-dark-theme.json
 ```
 
-然后在 Zed 中：Extensions 页 → **Install Dev Extension** → 选择本仓库根目录（含 `extension.toml` 的目录）。用主题选择器（`cmd-k cmd-t`）切换 20 个主题。
+Then **Install Dev Extension** in Zed and select the repository root (the folder containing `extension.toml`).
 
-排查：`zed: open log` 查看日志；终端 `zed --foreground` 可看 INFO 级输出。
+## Changing the accent color
 
-## 改 accent 色（可选）
+The baked accent can be overridden two ways:
 
-在 Zed `settings.json` 中按主题名覆盖（示例 Carbon，其余主题名同理）：
+**Per theme, in Zed settings** (works everywhere, no rebuild):
 
 ```json
 {
@@ -38,16 +67,47 @@ open -a Zed .                  # 或在 Zed 里：命令面板 → zed: open
 }
 ```
 
-构建时也可整体换 accent 重新生成：`npx tsx scripts/build-themes.ts --accent=pink`（支持 14 个预设名或任意 `#hex`）。
+**At build time** (regenerates the whole family with another accent):
 
-## 开发
+```bash
+npx tsx scripts/build-themes.ts --accent=pink   # 14 preset names or any #hex
+```
 
-- 技术栈：TypeScript（strict）+ tsx + vitest + ajv，**无 Rust**（theme-only 扩展不需要）。
-- 数据流：`data/`（vendor 自 `migrate_source/data` 的颜色数据）→ `scripts/build-themes.ts` → `themes/my-dark-theme.json`（生成产物，**禁止手改**）。`scripts/ui-map.ts` / `scripts/syntax-map.ts` 是 VS Code → Zed 的键位映射表。
-- 校验：`npm run verify` = typecheck + vitest（Schema/调色板/accent/HC/覆盖完备性/确定性 33 项断言）+ build（内置 ajv Schema 校验）。
-- 文档：`AGENTS.md`（项目约定）、`docs/research.md`（调研与映射表）、`docs/plan.md`（里程碑）、`PROGRESS.md`（进度与决策）。
+## Development
 
-## 致谢
+The repository root is the extension root. `themes/my-dark-theme.json` is **generated** — edit `data/` and the mapping tables in `scripts/`, never the output.
 
-- 配色基于 Material 开源色板与 Vira Theme 的公开可观察色彩值衍生；与 VS Code 版共享同一套颜色数据。
-- Zed 侧 syntax 键名集合参照 Zed 内置 One 主题；主题格式遵循 [Zed Theme JSON Schema v0.2.0](https://zed.dev/schema/themes/v0.2.0.json)。
+```
+extension.toml            Zed extension manifest (id: my-dark-theme)
+themes/                   generated theme family (single file, 20 themes)
+data/                     color source of truth (palettes, per-variant UI colors, HC overrides, accent spec)
+scripts/ui-map.ts         VS Code → Zed UI color mapping (all 139 One-theme keys, coverage-tested)
+scripts/syntax-map.ts     syntax keys → palette roles (46 canonical keys + 7 extras)
+scripts/build-themes.ts   builder + JSON Schema validation + accent baking
+test/                     vitest: schema, determinism, palette, accent, HC assertions
+```
+
+Commands:
+
+```bash
+npm run verify    # typecheck + build (ajv schema validation) + 36 tests
+npm run build     # themes only
+npm test          # assertions only
+```
+
+The build is deterministic (byte-identical output for identical input) and validates against the [official Zed theme JSON schema](https://zed.dev/schema/themes/v0.2.0.json). CI runs the full pipeline and repackages the downloadable bundle on every push.
+
+## Publishing
+
+This extension is intended for the [Zed extension registry](https://zed.dev/extensions). Publishing requirements are already accounted for in the design: theme-only extension (no Rust), registry-friendly id (`my-dark-theme`), English description, and a single generated theme file. The remaining steps live in [PROGRESS.md](PROGRESS.md): public repository, MIT license, `repository` field in `extension.toml`, then a PR to `zed-industries/extensions` (git submodule + `extensions.toml` entry).
+
+## Acknowledgments
+
+- Color values derive from the author's VS Code theme of the same name, built on the open **Material color palette** (as popularized by Material Theme and Vira Theme).
+- The syntax key set follows the conventions of Zed's built-in **One** theme; the theme format targets the [official Theme JSON Schema v0.2.0](https://zed.dev/schema/themes/v0.2.0.json).
+
+## License
+
+This repository is currently private and for personal use. It will be released under the **MIT License** when published to the extension registry (a registry requirement); see [LICENSE.txt](LICENSE.txt) in the meantime.
+
+中文说明见 [README_zh.md](README_zh.md)。
