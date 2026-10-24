@@ -12,7 +12,7 @@
 ## 〇、第二轮修正（用户澄清 + 补装插件后）
 
 1. **斜体已解决**：用户切换到 JetBrains Mono（有真斜体字形）——印证此前诊断（FiraCode 无斜体字面）；Zed/GPUI 的合成倾斜讨论已不重要。`keyword.import` 斜体映射在真斜体字体下应正常呈现。
-2. **`//!` 暖红色并非主题行为**：来自用户安装的注释增强类插件（Better Comments 类，按注释前缀改色）。因此"Rust 内层文档注释 VS 暖红 vs Zed 灰"的结论**撤回**——主题层面两边注释都是灰斜体，一致。该插件能力后续计划迁移（见 §六）。
+2. **`//!` 暖红色并非主题行为**：来自用户安装的注释增强插件（Better Comments 类，按注释前缀改色）。因此"Rust 内层文档注释 VS 暖红 vs Zed 灰"的结论**撤回**——主题层面两边注释都是灰斜体，一致。该能力用户已决定**做成独立插件项目**，不在本项目范围内。
 3. **Zig / Scala 已在 VS Code 补装插件**，重新对比（见 §四）。
 
 ## 一、已确认的差异与结论
@@ -49,19 +49,21 @@
 - VS Code：`markup.quote` 文本 = 青色斜体（模板 "Markdown - Blockquote" 规则）。
 - Zed：`@markup.quote` 原先无键 → 白色。**已补 `markup.quote` ← 青斜体**（syntax-map.ts），重建后生效。
 
-## 二、待复验（采样指向差异，请用 Inspector 确认后告知）
+## 二、待复验 7 项 → 已全部用 Inspector 结案（2026-10-24 第三轮，无需改映射）
 
-复验方法：把光标点进目标 token → `cmd+shift+P` → `Inspect Editor Tokens and Scopes` → 把弹窗里的 textmate scopes / semantic token / foreground 告诉我即可。
+复验方法：光标点进 token → `cmd+shift+P` → *Inspect Editor Tokens and Scopes*（中文语言包下为"开发者: 检查编辑器标记和作用域"，搜 `inspect` 或 `检查`）。**结论：7 项差异全部来自语法捕获桶或 LSP 语义层，与既定策略（Zed 以 TextMate 模板原义为准）一致，映射表无需修改。**
 
-| # | 位置 | VS Code 采样 | Zed 现状 | 猜测 |
+| # | 位置 | Inspector 实测（VS Code） | Zed | 裁决 |
 |---|---|---|---|---|
-| 1 | markdown `**粗体**` / `*斜体*`（samples/markdown.md L7） | 偏蓝（意外，模板应为红） | 红 | VS 的 markdown 语法可能把 emphasis 映射到别的 scope，需确认后决定 Zed 侧是否跟随 |
-| 2 | JSON 键（samples/json.json） | 紫灰（"JSON Key Level 0" 紫规则） | 红（`property`） | VS 按嵌套层级变色（紫→黄→橙…），Zed 单键不可分层；确认后维持红或改紫 |
-| 3 | Go 常量 `MaxWorkers` | 白 | 蓝青（`constant`） | VS 的 Go 语法把 const 名归 variable；确认后可把 Zed `constant` 改前景色 |
-| 4 | Java `package`/`import` | 橙（keyword.other） | 白/青 | Java 语法关键字桶差异，大概率不可分 |
-| 5 | C# `using`/`namespace` | 蓝灰系 | 灰白系 | C# DevKit 语义干扰，确认 TextMate 层 |
-| 6 | Rust 数字 `0x1F90` | 采样偏灰（模板应为橙） | 暖橙 ✓ | 可能是采样落在选区上，复验 |
-| 7 | C 结构体名 `Point` / `int` | 采样偏蓝（异常） | 黄 | 需确认（可能采样错位） |
+| 1 | markdown `**粗体**`（L7） | `markup.bold.markdown` + `markup.italic.markdown`（语法在该段落泄漏 italic）→ **"markup.bold markup.italic" 规则 = #C85E60 bold italic** | 红 + weight 700 | 主题层面一致；粗斜体（`***`）在 Zed 由 bold+italic 两捕获叠加自动成立 |
+| 2 | JSON 键（L16 `name`） | 按嵌套层级变色：Level 0 紫、**Level 1 黄 #D5B05F**（"JSON Key Level" 规则链，standard token type = String） | 红（`property`） | Zed 无层级 capture；红恰为 VS 的 Level 3 色，维持 |
+| 3 | Go 常量 `MaxWorkers` | 白（variable 族；Go 无 gopls 时纯 TextMate） | 青蓝（`constant`） | 语言级差异不可分；`constant`←青与其它语言的 constant.language 约定一致，维持 |
+| 4 | Java `package` | `keyword.other.package.java` → **橙 #CD775C**（"Other Keyword" 规则）；修饰符另有 LSP 语义蓝斜体（VS 自身不统一） | 青 | 语法桶差异，维持 |
+| 5 | C# `using` | textmate `keyword.other.directive.using.cs` **压过** Roslyn 语义 keyword 回退 → **橙 #CD775C** | 青 | 同上，维持。附带确认：语义与 textmate 冲突时 textmate 优先 |
+| 6 | Rust 数字 `0x1F90` | 语义 token type = **number** → 正确回落 Number 规则 = **橙 #CD775C** | 橙 | **一致** ✓（此前采样偏灰为伪影） |
+| 7 | C `Point`/类型 | 视觉+规则核对：类型黄、storage 紫、字段白、数字橙、注释 #45454A 斜体 | 同 | **一致** ✓（此前采样偏蓝为临时渲染故障伪影） |
+
+附带确认：括号/大括号等 punctuation 在 Go/Rust/C 三种语言中均为青 #6EBAD7（与 Zed `punctuation` 一致）。
 
 ## 三、本次已落地的修复
 
@@ -83,7 +85,3 @@
 - CSS 属性名：Vira 亮蓝，Zed 与 JSON/TS 成员共用 `property`（红）。
 - `keyword.control` 斜体依赖语法捕获（Zed TS 有；部分语言没有）。
 - JSON 键按嵌套层级变色：Zed 无层级 capture。
-
-## 六、远期迁移项（用户计划）
-
-- **注释前缀增强着色**（VS Code 侧由第三方插件提供，按 `//!`/`? `/`TODO` 等前缀改色）：Zed 主题无法实现前缀匹配；可行路径取决于语法是否发出特殊注释捕获（如 `@text.todo`/`@comment.todo` 类）。届时先盘点 Zed 各语法的高亮捕获，有捕获的主题键直接补映射，没有的语法则不可行。迁移时随独立 icon 项目一并评估。
