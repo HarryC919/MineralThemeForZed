@@ -99,10 +99,6 @@ npm test          # 仅测试
 
 构建是确定性的（相同输入产出字节级一致的输出），并对照[官方 Zed 主题 JSON Schema](https://zed.dev/schema/themes/v0.2.0.json) 校验。CI 在每次 push 时跑完整管线并重新打包可下载 bundle。
 
-## 发布
-
-仓库已公开且满足 [registry 前提](https://zed.dev/docs/extensions/publishing/prerequisites)：theme-only（无 Rust）、合规 id（`mineral-theme`）、MIT license、`repository` 字段、英文描述、单一生成主题文件。剩余步骤是向 [`zed-industries/extensions`](https://github.com/zed-industries/extensions) 提 PR：fork → `git submodule add https://github.com/HarryC919/MineralThemeForZed.git extensions/mineral-theme` → 在 `extensions.toml` 追加 `[mineral-theme]` 条目 → `pnpm sort-extensions` → 开 PR。
-
 ## 开发 Agent
 
 本扩展由 **ZCode** 编码 Agent 端到端完成，底层模型为 **GLM-5.3-Flash**（Z.ai）——调研、里程碑规划、数据管线与映射表、20 个生成主题、测试套件、VS Code 与 Zed 的像素级渲染对比，以及你正在读的这些文档。关键决策（命名、accent 色、范围、是否上架）均由人工把关。

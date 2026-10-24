@@ -97,10 +97,6 @@ npm test          # assertions only
 
 The build is deterministic (byte-identical output for identical input) and validates against the [official Zed theme JSON schema](https://zed.dev/schema/themes/v0.2.0.json). CI runs the full pipeline and repackages the downloadable bundle on every push.
 
-## Publishing
-
-The repository is public and meets the [registry prerequisites](https://zed.dev/docs/extensions/publishing/prerequisites): theme-only extension (no Rust), registry-friendly id (`mineral-theme`), MIT license, `repository` field set, English description, and a single generated theme file. The remaining step is a PR to [`zed-industries/extensions`](https://github.com/zed-industries/extensions): fork → `git submodule add https://github.com/HarryC919/MineralThemeForZed.git extensions/mineral-theme` → add the `[mineral-theme]` entry to `extensions.toml` → `pnpm sort-extensions` → open the PR.
-
 ## Development Agent
 
 This extension was built end-to-end with the **ZCode** coding agent, powered by **GLM-5.3-Flash** (Z.ai) — research, milestone planning, the data pipeline and mapping tables, the 20 generated themes, the test suite, pixel-level rendering comparisons between VS Code and Zed, and these very docs. Human review covered every decision that mattered: naming, accent color, scope, and whether to publish.
