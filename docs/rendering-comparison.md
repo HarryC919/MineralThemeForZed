@@ -1,4 +1,4 @@
-# VS Code vs Zed 渲染对比记录（2026-10-24）
+# VS Code vs Zed 渲染对比记录（2026-10-24，两轮）
 
 对比语料：`samples/`（23 个语言/文件类型）；两个编辑器均为 **My Dark Theme Carbon**。
 方法与工具链：CLI 打开同一目录 → computer use 逐文件截图（VS Code 走无障碍文件树点击，Zed 走 cmd+P）→ 三层验证：
@@ -9,19 +9,24 @@
 
 结论分三档：**已确认**（检查器/语法源码级）、**待复验**（采样一致但未到检查器级，附复验步骤）、**不可比/接受**。
 
+## 〇、第二轮修正（用户澄清 + 补装插件后）
+
+1. **斜体已解决**：用户切换到 JetBrains Mono（有真斜体字形）——印证此前诊断（FiraCode 无斜体字面）；Zed/GPUI 的合成倾斜讨论已不重要。`keyword.import` 斜体映射在真斜体字体下应正常呈现。
+2. **`//!` 暖红色并非主题行为**：来自用户安装的注释增强类插件（Better Comments 类，按注释前缀改色）。因此"Rust 内层文档注释 VS 暖红 vs Zed 灰"的结论**撤回**——主题层面两边注释都是灰斜体，一致。该插件能力后续计划迁移（见 §六）。
+3. **Zig / Scala 已在 VS Code 补装插件**，重新对比（见 §四）。
+
 ## 一、已确认的差异与结论
 
-### 1. VS Code 侧有两个语言没有语法着色（不可比）
+### 1. VS Code 侧 Zig/Scala 曾无语法着色 → 已由用户补装插件，第二轮重新对比
 
-- **Zig**：VS Code 无 Zig grammar（Inspector 返回 "No grammar or semantic tokens available"，状态栏 Plain Text，整文件单色前景）。Zed 侧 zig 扩展正常高亮。
-- **Scala**：VS Code 同样单色（颜色多样性检验：亮像素 100% 为中性灰）。
-- 影响：这两个文件只在 Zed 侧有效。若要对比，VS Code 需装 Zig/Scala 扩展后重截。
+- 第一轮时 VS Code 无 Zig/Scala grammar（Inspector 返回 "No grammar or semantic tokens available"，整文件单色），结论已随用户补装失效。
+- **第二轮对比结果（Zig）**：Zed 侧 `const`/`struct`/`error` 声明紫（zig 语法发 declaration 类捕获）、类型黄、数字橙（含 `0b1100_1010` 下划线分隔）、字段/成员红、字符串绿、`//!` 灰斜体——与 Vira 家族观感一致。VS Code 侧 `const` 紫一致；控制流 `return/switch` 青斜体一致；`pub/fn` 的色调两侧语法桶不同（VS 偏青、Zed 偏紫），属语法捕获差异。
+- **第二轮对比结果（Scala）**：一致项——类型黄（String/Int/Either/ListMap）、字符串绿（含 `$text` 插值）、注释灰斜体、函数调用蓝（`encode`/`parseInt`）；差异项——声明关键字（`trait/def/object/given/package`）VS 偏橙红（其语法的 keyword.other）vs Zed 紫（declaration 捕获），包根路径 `scala` Zed 红（namespace 捕获）vs VS 白。均为语法层差异，主题不可修；Zed 侧紫/青分布与 Rust/TS 家族内一致，维持现状。
 
-### 2. 斜体：Zed 实际会渲染（用户此前看到的现象是字体+映射缺口叠加）
+### 2. 斜体：已由字体切换解决（用户确认）
 
-- 2x 放大确认 Zed 注释（`//!`、`///`）**斜体字形可见**——Zed/GPUI 对无斜体字面会合成倾斜，此前"FiraCode 无斜体所以斜体全灭"的结论**修正**：合成斜体是生效的。
-- 用户报告的 `import` 无斜体，根因是当时缺 `keyword.import` 映射键（青色与关键字同色，唯一信号就是斜体缺失）。**该键已补，请重验 `import`/`export`/`from` 是否倾斜。**
-- 备注：VS Code 的合成斜体更"斜"（Chromium 风格），Zed 的合成倾斜幅度较小——观感差异存在但属渲染器行为，主题无法控制。
+- 用户切换到 JetBrains Mono 后斜体正常——印证此前诊断：FiraCode 全家族无斜体字面是根因；JetBrains Mono 有真斜体，主题的 `font_style: italic` 全部生效。
+- `keyword.import`（import/export/from 青斜体）与 `keyword.control`、注释斜体在真斜体字体下均应正常呈现。
 
 ### 3. Rust `pub`：VS Code = Storage 紫（检查器确认），Zed = 青（语法桶限制）
 
@@ -29,10 +34,10 @@
 - Zed 1.25.3 的 Rust 语法把 `pub` 归入笼统 `@keyword`（无 `@keyword.storage` 细分，TS 语法才有 `@keyword.declaration`）→ 青。
 - **不可修**（改 `keyword` 本色会波及所有关键字）；`const`/`fn`/`struct` 在 Zed Rust 同理。Zig/Go 的同类关键字亦然。
 
-### 4. Rust 内层文档注释 `//!`：VS Code 暖红色，Zed 灰色
+### 4. Rust `//!` 暖红色：已撤回（第二方插件行为，非主题）
 
-- 像素采样多行一致：VS Code `//!` 渲染为暖红棕色系，`///` 为灰 #45454A（模板 Comment 规则）——VS Code 的 Rust 语法对两者 scope 不同。
-- Zed 无单独的 inner-doc capture（`comment` 顶层覆盖两种），**不可分**。接受。
+- 第一轮观察到的"`//!` 内层文档注释在 VS Code 呈暖红、`///` 为灰"来自用户的**注释增强插件**（按注释前缀 `!`/`?`/`TODO` 等改色，同 Better Comments 机制），与主题无关。
+- 主题层面两边一致：注释 = 灰斜体（#45454A / #546E7A 族经变体调色板）。
 
 ### 5. LSP 语义色层：VS Code 有、Zed 无（系统性策略）
 
@@ -78,3 +83,7 @@
 - CSS 属性名：Vira 亮蓝，Zed 与 JSON/TS 成员共用 `property`（红）。
 - `keyword.control` 斜体依赖语法捕获（Zed TS 有；部分语言没有）。
 - JSON 键按嵌套层级变色：Zed 无层级 capture。
+
+## 六、远期迁移项（用户计划）
+
+- **注释前缀增强着色**（VS Code 侧由第三方插件提供，按 `//!`/`? `/`TODO` 等前缀改色）：Zed 主题无法实现前缀匹配；可行路径取决于语法是否发出特殊注释捕获（如 `@text.todo`/`@comment.todo` 类）。届时先盘点 Zed 各语法的高亮捕获，有捕获的主题键直接补映射，没有的语法则不可行。迁移时随独立 icon 项目一并评估。

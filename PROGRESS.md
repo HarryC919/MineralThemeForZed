@@ -19,6 +19,12 @@
 
 ## 已完成工作
 
+### 2026-10-24 · 渲染对比第二轮（用户澄清 + Zig/Scala 补比）
+
+- **用户澄清**：斜体已通过切换 JetBrains Mono 解决（印证 FiraCode 无斜体字面的诊断）；`//!` 暖红来自其注释增强插件（非主题）——文档已撤回该条；该插件能力列为远期迁移项（rendering-comparison.md §六）。
+- **Zig/Scala 补比**（VS Code 补装插件后重截）：Zig 高度一致（const/struct 紫、类型黄、数字橙、字段红、注释灰斜体；pub/fn 色调桶差异属语法层）；Scala 一致项为类型黄/字符串绿/函数蓝/注释斜体，差异为声明关键字色（VS 橙红系 vs Zed 紫）与包根路径（Zed 红 vs VS 白）——均语法捕获差异，维持现状，无映射修改。
+- 本轮无代码变更；docs/rendering-comparison.md 修正两处结论并新增 §〇/§六。
+
 ### 2026-10-24 · 渲染对比（samples 语料库 + 三层验证）
 
 - **语料库**：`samples/` 24 文件覆盖 C/C++/Rust/Zig/Java/C#/Go/Scala/Kotlin/Python/JS/TS/CSS/Ruby/PHP/SQL/XML/HTML/JSON/TOML/YAML/Markdown/Shell/Swift，每文件刻意覆盖声明/控制/修饰符关键字、函数/类型/属性、字符串转义/模板、注释三态、数字进制、装饰器/宏/预处理器等。
