@@ -41,7 +41,7 @@ Every CI run attaches a ready-to-use bundle (`extension.toml` + generated `theme
 
 ```bash
 git clone <this repository>
-cd MyDarkThemeForZed
+cd MineralThemeForZed
 npm install
 npm run build        # generates themes/mineral-theme.json
 ```
@@ -107,7 +107,7 @@ This extension was built end-to-end with the **ZCode** coding agent, powered by 
 
 ## Acknowledgments
 
-- Color values derive from the author's VS Code theme *My Dark Theme*, built on the open **Material color palette** (as popularized by Material Theme and Vira Theme).
+- Color values derive from the author's own VS Code theme, built on the open **Material color palette** (as popularized by Material Theme and Vira Theme).
 - The syntax key set follows the conventions of Zed's built-in **One** theme; the theme format targets the [official Theme JSON Schema v0.2.0](https://zed.dev/schema/themes/v0.2.0.json).
 
 ## License

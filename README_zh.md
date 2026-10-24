@@ -43,7 +43,7 @@
 
 ```bash
 git clone <本仓库>
-cd MyDarkThemeForZed
+cd MineralForZed
 npm install
 npm run build        # 生成 themes/mineral-theme.json
 ```
@@ -109,7 +109,7 @@ npm test          # 仅测试
 
 ## 致谢
 
-- 颜色值衍生自作者的 VS Code 主题 *My Dark Theme*，其配色基于开源 **Material 色板**（因 Material Theme 与 Vira Theme 而广为人知）。
+- 颜色值衍生自作者自己的 VS Code 主题，其配色基于开源 **Material 色板**（因 Material Theme 与 Vira Theme 而广为人知）。
 - 语法键集合遵循 Zed 内置 **One** 主题的约定；主题格式对齐[官方 Theme JSON Schema v0.2.0](https://zed.dev/schema/themes/v0.2.0.json)。
 
 ## License

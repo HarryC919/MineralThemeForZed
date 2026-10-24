@@ -12,7 +12,7 @@
         <count total="20" variants="10" contrast="2" />
     </theme:metadata>
 
-    <theme:family name="My Dark Theme" accent="#5393FF">
+    <theme:family name="Mineral Theme" accent="#5393FF">
         <description>Dark theme family with 10 background variants &mdash; ported from VS Code.</description>
         <theme:variant name="carbon" contrast="false">
             <color:background>#0A0A0A</color:background>

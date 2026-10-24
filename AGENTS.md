@@ -4,7 +4,7 @@
 
 ## 1. 项目概述
 
-**MyDarkThemeForZed** 把 `migrate_source/`（VS Code 版 Mineral Theme，视觉对标 Vira Theme）中的**颜色主题**复刻为 **Zed 主题扩展 Mineral Theme**（原名 My Dark Theme，2026-10-24 更名）。
+**MineralThemeForZed** 把作者自己的 VS Code 主题（`migrate_source/`，视觉对标 Vira Theme）中的**颜色主题**复刻为 **Zed 主题扩展 Mineral Theme**。
 
 - **范围**：只做 color theme——10 个背景变体（Carbon / Anthracite / Clay / Deepforest / Graphene / Montana / Ocean / Palenight / Sand / Teal）× 常规/High Contrast = 20 个主题，覆盖工作台 UI 色、编辑器语法色、终端 ANSI。
 - **不做**：文件/产品图标主题（Zed 插件生态里 color 与 icon 分开实现，icon 后续另立项目）；VS Code 版的运行时自定义（accent 染色等——Zed 主题是静态 JSON，机制不存在）。
@@ -28,7 +28,7 @@
 - **布局**（仓库根 = 扩展根，即 dev extension 安装时选择的目录）：
 
   ```
-  MyDarkThemeForZed/
+  MineralThemeForZed/
   ├── extension.toml            # Zed 扩展清单（id: mineral-theme, schema_version: 1）
   ├── themes/                   # 构建产物：mineral-theme.json（family + 20 主题），禁止手改
   ├── data/                     # 颜色唯一数据源，vendor 自 migrate_source/data（仅颜色相关 7 个文件）

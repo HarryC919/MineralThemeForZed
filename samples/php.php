@@ -114,7 +114,7 @@ final class ThemeRenderer extends Renderer
     }
 }
 
-$renderer = new ThemeRenderer('My Dark Theme', [
+$renderer = new ThemeRenderer('Mineral Theme', [
     ['name' => 'Carbon'],
     ['name' => 'Teal'],
     ['name' => 'Ocean'],

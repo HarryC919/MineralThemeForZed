@@ -17,9 +17,9 @@ COMMENT ON TABLE themes IS 'theme registry 0x00-0xFF';
 
 INSERT INTO themes (name, background, variant, is_contrast, ratio, metadata)
 VALUES
-    ('My Dark Theme Carbon', '#0A0A0A', 'carbon', FALSE, 1.618, '{"tags": ["dark"]}'::jsonb),
-    ('My Dark Theme Teal',   '#263238', 'teal',   FALSE, 2.5e-1, NULL),
-    ('My Dark Theme Carbon High Contrast', '#101213', 'carbon', TRUE, 0xFF, NULL)
+    ('Mineral Theme Carbon', '#0A0A0A', 'carbon', FALSE, 1.618, '{"tags": ["dark"]}'::jsonb),
+    ('Mineral Theme Teal',   '#263238', 'teal',   FALSE, 2.5e-1, NULL),
+    ('Mineral Theme Carbon High Contrast', '#101213', 'carbon', TRUE, 0xFF, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 WITH ranked AS (

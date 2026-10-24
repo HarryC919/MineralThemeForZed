@@ -4,7 +4,7 @@ import Foundation
 let version: Double = 1.0
 let mask: UInt8 = 0xFF
 let ratio = 1.618_033_988
-let name = "My Dark Theme"
+let name = "Mineral Theme"
 
 enum Color: String, CaseIterable {
     case teal, blue = "0x5393FF", pink

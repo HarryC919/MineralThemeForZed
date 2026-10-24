@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 #endregion
 
-namespace MyDarkTheme.Samples;
+namespace MineralTheme.Samples;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public sealed class SampleAttribute : Attribute

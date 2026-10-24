@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "0.1.0",
 	"type": "module",
-	"description": "Build pipeline for the My Dark Theme Zed color-theme extension (themes/my-dark-theme.json is generated, do not edit).",
+	"description": "Build pipeline for the Mineral Theme Zed color-theme extension (themes/mineral-theme.json is generated, do not edit).",
 	"scripts": {
 		"build": "tsx scripts/build-themes.ts",
 		"typecheck": "tsc --noEmit",

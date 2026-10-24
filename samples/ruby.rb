@@ -70,7 +70,7 @@ module DarkTheme
 end
 
 theme = DarkTheme::Theme.new(
-  name: "My Dark Theme #{:carbon.to_s.capitalize}",
+  name: "Mineral Theme #{:carbon.to_s.capitalize}",
   variants: %w[teal carbon ocean],
 )
 
